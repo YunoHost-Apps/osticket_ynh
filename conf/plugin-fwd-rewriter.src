@@ -1,0 +1,6 @@
+SOURCE_URL=https://github.com/clonemeagain/plugin-fwd-rewriter/archive/2c5e3bad0f0cb94a1b51a33a854cfd551ea67e30.tar.gz
+SOURCE_SUM=c12f1757110ef5141f274b5dc10be186c1d608d2bed74d48f41bce956abc98a3
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

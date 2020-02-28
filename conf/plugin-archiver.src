@@ -1,0 +1,6 @@
+SOURCE_URL=https://github.com/clonemeagain/osticket-plugin-archiver/archive/6f14d3908e1c92c6d95ac28bdd33b03f6e67c5e5.tar.gz
+SOURCE_SUM=9b2cb9bc20a5539a67b51cc7a1299d2b6d8ad3cfa1c9b62947745d4321e09d52
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

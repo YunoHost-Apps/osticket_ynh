@@ -1,0 +1,6 @@
+SOURCE_URL=https://github.com/osTicket/osTicket/releases/download/v1.14.1/osTicket-v1.14.1.zip
+SOURCE_SUM=fa751b78fe84212376ab25e867b93c8a45d426917ae7d946f4be216d9b23505f
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=zip
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

@@ -1,0 +1,6 @@
+SOURCE_URL=https://github.com/bkonetzny/osticket-fetch-note/archive/7bd28052a33d448db68e0393ca5d92f1b1744283.tar.gz
+SOURCE_SUM=d95c8c744cdad20b25fe4053ca795d118e82c36a5f0b86973da47209b5ac9cc0
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=
