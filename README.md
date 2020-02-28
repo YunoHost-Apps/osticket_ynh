@@ -27,7 +27,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 #### Multi-users support
 
-Are LDAP and HTTP auth are supported through plugins
+LDAP and HTTP auth are supported through plugins
 
 #### Supported architectures
 
@@ -37,23 +37,23 @@ Are LDAP and HTTP auth are supported through plugins
 ## Additional information
 
 * The package include several plugins to be installed and enabled:
-- Archiver
-- Attachment Inline
-- Attachments hosted in Amazon S3
-- Attachments on the filesystem
-- Fetch Note
-- HTTP Passthru Authentication
-- JASIG CAS Authentication
-- LDAP Authentication and Lookup
-- Mattermost integration
-- Mentioner
-- Microsoft Teams notifier
-- Oauth2 Authentication and Lookup
-- Prevent Autoscroll
-- Radiobuttons
-- Slack notifier
-- Ticket Closer
-- Ticket Rewriter
+  - Archiver
+  - Attachment Inline
+  - Attachments hosted in Amazon S3
+  - Attachments on the filesystem
+  - Fetch Note
+  - HTTP Passthru Authentication
+  - JASIG CAS Authentication
+  - LDAP Authentication and Lookup
+  - Mattermost integration
+  - Mentioner
+  - Microsoft Teams notifier
+  - Oauth2 Authentication and Lookup
+  - Prevent Autoscroll
+  - Radiobuttons
+  - Slack notifier
+  - Ticket Closer
+  - Ticket Rewriter
 
 ## Links
 
