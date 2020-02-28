@@ -13,7 +13,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## Screenshots
 
-![](https://docs.osticket.com/en/latest/_images/agent_tickets_ticket_ticketQueue.png)
+![](screenshot.jpg)
 
 ## Demo
 
