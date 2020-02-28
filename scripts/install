@@ -163,6 +163,13 @@ popd
 ynh_secure_remove --file="$final_path/include/plugins/build"
 
 #=================================================
+# INSTALL LANGUAGE
+#=================================================
+ynh_print_info --message="Installing language..."
+
+rsync -a "../conf/i18n" "$final_path/include/."
+
+#=================================================
 # SETUP APPLICATION WITH CURL
 #=================================================
 ynh_print_info --message="Setuping application with CURL..."

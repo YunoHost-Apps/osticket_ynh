@@ -171,6 +171,14 @@ then
 	popd
 	ynh_secure_remove --file="$final_path/include/plugins/build"
 fi
+
+#=================================================
+# UPGRADE LANGUAGE
+#=================================================
+ynh_print_info --message="UPGRADING language..."
+
+rsync -a "../conf/i18n" "$final_path/include/."
+
 #=================================================
 # FINALIZE UPGRADE
 #=================================================
