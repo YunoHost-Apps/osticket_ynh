@@ -55,6 +55,54 @@ LDAP and HTTP auth are supported through plugins
   - Ticket Closer
   - Ticket Rewriter
 
+* The package include several languages:
+  - Arabic - Egypt (مصر)
+  - Arabic - Saudi Arabia (المملكة العربية السعودية)
+  - Azerbaijani (azərbaycanca)
+  - Bulgarian (български)
+  - Catalan (Català)
+  - Chinese (China) (中文 (中国))
+  - Chinese (Taiwan) (中文（台灣)
+  - Croatian (hrvatski)
+  - Czech (čeština)
+  - Danish (dansk)
+  - Dutch (Nederlands)
+  - English (Great Britain)
+  - English (US)
+  - Estonian (eesti)
+  - Finnish (suomi)
+  - French (français)
+  - German (Deutsch)
+  - Greek (Ελληνικά)
+  - Hebrew (עברית)
+  - Hungarian (magyar)
+  - Indonesian
+  - Italian (italiano)
+  - Japanese (日本語)
+  - Korean (한국어)
+  - Lithuanian (lietuvių)
+  - Macedonian (македонски)
+  - Malay
+  - Mongolian (монгол)
+  - Norwegian (norsk)
+  - Persian (فارسی)
+  - Polish (polski)
+  - Portuguese (Português)
+  - Portuguese, Brazil (Português — BR)
+  - Romanian (română)
+  - Russian (русский язык)
+  - Serbian (Serbia) (српски (Србија))
+  - Slovak (slovenčina)
+  - Slovenian (slovenščina)
+  - Spanish (Argentina)
+  - Spanish (español)
+  - Spanish - Mexico (Méjico)
+  - Swedish (svenska)
+  - Thai (ไทย)
+  - Turkish (Türkçe)
+  - Ukrainian (українська)
+  - Vietnamese (Tiếng Việt)
+
 ## Links
 
  * Report a bug: https://github.com/YunoHost-Apps/osticket_ynh/issues
