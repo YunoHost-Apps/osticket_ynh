@@ -3,8 +3,8 @@
     "id": "osticket",
     "packaging_format": 1,
     "description": {
-        "en": "osTicket is a open source support ticket system",
-        "fr": "osTicket est un système de ticket de support open source"
+        "en": "Open source support ticket system",
+        "fr": "Système de ticket de support open source"
     },
     "version": "1.14.2~ynh1",
     "url": "https://osticket.com/",
