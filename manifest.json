@@ -6,7 +6,7 @@
         "en": "osTicket is a open source support ticket system",
         "fr": "osTicket est un système de ticket de support open source"
     },
-    "version": "1.14.1~ynh1",
+    "version": "1.14.2~ynh1",
     "url": "https://osticket.com/",
     "license": "GPL-2.0-or-later",
     "maintainer": {
