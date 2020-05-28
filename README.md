@@ -9,7 +9,7 @@ If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to
 ## Overview
 osTicket is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
 
-**Shipped version:** 1.14.1
+**Shipped version:** 1.14.2
 
 ## Screenshots
 
@@ -56,9 +56,13 @@ LDAP and HTTP auth are supported through plugins
   - Ticket Rewriter
 
 * The package include several languages:
+  - Albanian (shqip)
   - Arabic - Egypt (مصر)
   - Arabic - Saudi Arabia (المملكة العربية السعودية)
   - Azerbaijani (azərbaycanca)
+  - Basque (euskara)
+  - Bengali (বাংলা)
+  - Bosnian (bosanski)
   - Bulgarian (български)
   - Catalan (Català)
   - Chinese (China) (中文 (中国))
@@ -72,17 +76,23 @@ LDAP and HTTP auth are supported through plugins
   - Estonian (eesti)
   - Finnish (suomi)
   - French (français)
+  - Galician (galego)
+  - Georgian (ქართული)
   - German (Deutsch)
   - Greek (Ελληνικά)
   - Hebrew (עברית)
+  - Hindi (हिन्दी)
   - Hungarian (magyar)
+  - Icelandic (íslenska)
   - Indonesian
   - Italian (italiano)
   - Japanese (日本語)
+  - Khmer (ខ្មែរ)
   - Korean (한국어)
+  - Latvian (latviešu)
   - Lithuanian (lietuvių)
   - Macedonian (македонски)
-  - Malay
+  - Malay (Melayu)
   - Mongolian (монгол)
   - Norwegian (norsk)
   - Persian (فارسی)
@@ -91,16 +101,20 @@ LDAP and HTTP auth are supported through plugins
   - Portuguese, Brazil (Português — BR)
   - Romanian (română)
   - Russian (русский язык)
+  - Serbian (Cyrillic)
   - Serbian (Serbia) (српски (Србија))
   - Slovak (slovenčina)
   - Slovenian (slovenščina)
   - Spanish (Argentina)
   - Spanish (español)
   - Spanish - Mexico (Méjico)
+  - Swahili (Kiswahili)
   - Swedish (svenska)
   - Thai (ไทย)
   - Turkish (Türkçe)
   - Ukrainian (українська)
+  - Urdu (India) (اردو (بھارت
+  - Urdu (Pakistan) اردو (پاکستان)
   - Vietnamese (Tiếng Việt)
 
 ## Links

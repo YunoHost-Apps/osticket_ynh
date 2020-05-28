@@ -96,9 +96,6 @@ ynh_setup_source --dest_dir="$final_path/include/plugins/build/microsoft-teams" 
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/slack" --source_id="plugin-slack"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
 
-# Woraround for https://github.com/osTicket/osTicket-plugins/pull/174
-ynh_replace_string --match_string="https://getcomposer.org/composer.phar" --replace_string="https://getcomposer.org/composer-stable.phar" --target_file="$final_path/include/plugins/build/make.php"
-
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
