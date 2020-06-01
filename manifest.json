@@ -3,10 +3,10 @@
     "id": "osticket",
     "packaging_format": 1,
     "description": {
-        "en": "osTicket is a open source support ticket system",
-        "fr": "osTicket est un système de ticket de support open source"
+        "en": "Open source support ticket system",
+        "fr": "Système de ticket de support open source"
     },
-    "version": "1.14.1~ynh1",
+    "version": "1.14.2~ynh1",
     "url": "https://osticket.com/",
     "license": "GPL-2.0-or-later",
     "maintainer": {
@@ -47,7 +47,7 @@
                 "type": "user",
                 "ask": {
                     "en": "Choose an admin user",
-                    "fr": "Choisissez l’administrateur"
+                    "fr": "Choisissez l'administrateur"
                 },
                 "example": "johndoe"
             },
@@ -67,7 +67,7 @@
                     "en": "Choose the application language",
                     "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["en_US","fr","ar_EG","ar_SA","az","bg","ca","cs","da","de","el","en_GB","es_AR","es_ES","es_MX","et","fa","fi","he","hr","hu","id","it","ja","ko","lt","mk","mn","ms","nl","no","pl","pt_BR","pt_PT","ro","sk","sl","sr_CS","sv_SE","th","tr","uk","vi","zh_CN","zh_TW"],
+                "choices": ["en_US","fr","ar_EG","ar_SA","az","bg","bn","bs","ca","cs","da","de","el","en_GB","es_AR","es_ES","es_MX","et","eu","fa","fi","he","hi","hr","hu","id","is","it","ja","ka","km","ko","lt","lv","mk","mn","ms","nl","no","pl","pt_BR","pt_PT","ro","ru","sk","sl","sq","sr","sr_CS","sv_SE","sw","th","tr","uk","ur_IN","ur_PK","vi","zh_CN","zh_TW"],
                 "default": "fr"
             },
             {
