@@ -1,6 +1,6 @@
 # osTicket for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket)  
+[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)  
 [![Install osTicket with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=osticket)
 
 > *This package allow you to install osTicket quickly and simply on a YunoHost server.  
@@ -55,68 +55,8 @@ LDAP and HTTP auth are supported through plugins
   - Ticket Closer
   - Ticket Rewriter
 
-* The package include several languages:
-  - Albanian (shqip)
-  - Arabic - Egypt (مصر)
-  - Arabic - Saudi Arabia (المملكة العربية السعودية)
-  - Azerbaijani (azərbaycanca)
-  - Basque (euskara)
-  - Bengali (বাংলা)
-  - Bosnian (bosanski)
-  - Bulgarian (български)
-  - Catalan (Català)
-  - Chinese (China) (中文 (中国))
-  - Chinese (Taiwan) (中文（台灣)
-  - Croatian (hrvatski)
-  - Czech (čeština)
-  - Danish (dansk)
-  - Dutch (Nederlands)
-  - English (Great Britain)
-  - English (US)
-  - Estonian (eesti)
-  - Finnish (suomi)
-  - French (français)
-  - Galician (galego)
-  - Georgian (ქართული)
-  - German (Deutsch)
-  - Greek (Ελληνικά)
-  - Hebrew (עברית)
-  - Hindi (हिन्दी)
-  - Hungarian (magyar)
-  - Icelandic (íslenska)
-  - Indonesian
-  - Italian (italiano)
-  - Japanese (日本語)
-  - Khmer (ខ្មែរ)
-  - Korean (한국어)
-  - Latvian (latviešu)
-  - Lithuanian (lietuvių)
-  - Macedonian (македонски)
-  - Malay (Melayu)
-  - Mongolian (монгол)
-  - Norwegian (norsk)
-  - Persian (فارسی)
-  - Polish (polski)
-  - Portuguese (Português)
-  - Portuguese, Brazil (Português — BR)
-  - Romanian (română)
-  - Russian (русский язык)
-  - Serbian (Cyrillic)
-  - Serbian (Serbia) (српски (Србија))
-  - Slovak (slovenčina)
-  - Slovenian (slovenščina)
-  - Spanish (Argentina)
-  - Spanish (español)
-  - Spanish - Mexico (Méjico)
-  - Swahili (Kiswahili)
-  - Swedish (svenska)
-  - Thai (ไทย)
-  - Turkish (Türkçe)
-  - Ukrainian (українська)
-  - Urdu (India) (اردو (بھارت
-  - Urdu (Pakistan) اردو (پاکستان)
-  - Vietnamese (Tiếng Việt)
-
+* The package includes many languages available through `Admin Panel > Settings > System
+  
 ## Links
 
  * Report a bug: https://github.com/YunoHost-Apps/osticket_ynh/issues
@@ -126,8 +66,7 @@ LDAP and HTTP auth are supported through plugins
 
 ---
 
-Developers info
-----------------
+## Developers info
 
 Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing).
 
