@@ -99,9 +99,9 @@ ynh_setup_source --dest_dir="$final_path/include/plugins/build/preventautoscroll
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info --message="Configuring nginx web server..."
+ynh_print_info --message="Configuring NGINX web server..."
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
 
 #=================================================
@@ -115,10 +115,11 @@ ynh_system_user_create --username=$app --home_dir=$final_path
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_print_info --message="Configuring php-fpm..."
+ynh_print_info --message="Configuring PHP-FPM..."
 
-# Create a dedicated php-fpm config
-ynh_add_fpm_config
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # SPECIFIC SETUP
@@ -143,24 +144,24 @@ mkdir -p "$final_path/include/plugins/build/.config/composer"
 COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 
 pushd "$final_path/include/plugins/build"
-	php make.php hydrate
-	php -dphar.readonly=0 make.php build auth-cas
-	php -dphar.readonly=0 make.php build auth-ldap
-	php -dphar.readonly=0 make.php build auth-oauth
-	php -dphar.readonly=0 make.php build auth-passthru
-	php -dphar.readonly=0 make.php build storage-fs
-	php -dphar.readonly=0 make.php build storage-s3
-	php -dphar.readonly=0 make.php build archiver
-	php -dphar.readonly=0 make.php build attachment_preview
-	php -dphar.readonly=0 make.php build autocloser
-	php -dphar.readonly=0 make.php build fetch-note
-	php -dphar.readonly=0 make.php build field-radiobuttons
-	php -dphar.readonly=0 make.php build fwd-rewriter
-	php -dphar.readonly=0 make.php build mattermost
-	php -dphar.readonly=0 make.php build mentioner
-	php -dphar.readonly=0 make.php build microsoft-teams
-	php -dphar.readonly=0 make.php build slack
-	php -dphar.readonly=0 make.php build preventautoscroll
+	php$phpversion make.php hydrate
+	php$phpversion -dphar.readonly=0 make.php build auth-cas
+	php$phpversion -dphar.readonly=0 make.php build auth-ldap
+	php$phpversion -dphar.readonly=0 make.php build auth-oauth
+	php$phpversion -dphar.readonly=0 make.php build auth-passthru
+	php$phpversion -dphar.readonly=0 make.php build storage-fs
+	php$phpversion -dphar.readonly=0 make.php build storage-s3
+	php$phpversion -dphar.readonly=0 make.php build archiver
+	php$phpversion -dphar.readonly=0 make.php build attachment_preview
+	php$phpversion -dphar.readonly=0 make.php build autocloser
+	php$phpversion -dphar.readonly=0 make.php build fetch-note
+	php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
+	php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
+	php$phpversion -dphar.readonly=0 make.php build mattermost
+	php$phpversion -dphar.readonly=0 make.php build mentioner
+	php$phpversion -dphar.readonly=0 make.php build microsoft-teams
+	php$phpversion -dphar.readonly=0 make.php build slack
+	php$phpversion -dphar.readonly=0 make.php build preventautoscroll
 	cp *.phar $final_path/include/plugins/.
 popd
 ynh_secure_remove --file="$final_path/include/plugins/build"
@@ -175,21 +176,21 @@ rsync -a "../conf/i18n" "$final_path/include/."
 #=================================================
 # SETUP APPLICATION WITH CURL
 #=================================================
-ynh_print_info --message="Setuping application with CURL..."
+ynh_print_info --message="Setuping application with cURL..."
 
-# Set right permissions for curl install
+# Set right permissions for cURL install
 chown -R $app: $final_path
 
-# Set the app as temporarily public for curl call
+# Set the app as temporarily public for cURL call
 ynh_print_info --message="Configuring SSOwat..."
 ynh_app_setting_set --app=$app --key=skipped_uris --value="/"
 # Reload SSOwat config
 yunohost app ssowatconf
 
-# Reload Nginx
+# Reload NGINX
 ynh_systemd_action --service_name=nginx --action=reload
 
-# Installation with curl
+# Installation with cURL
 ynh_print_info --message="Finalizing installation..."
 ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain" "lang_id=$language" "fname=$admin_fname" "lname=$admin_lname" "admin_email=$admin_mail" "username=$admin" "passwd=$password" "passwd2=$password" "prefix=ost_" "dbhost=localhost" "dbname=$db_name" "dbuser=$db_user" "dbpass=$db_pwd"
 
@@ -218,6 +219,7 @@ ynh_print_info --message="Setting the cron file..."
 cp ../conf/cron /etc/cron.d/$app
 
 ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
@@ -252,7 +254,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_print_info --message="Reloading nginx web server..."
+ynh_print_info --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 

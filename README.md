@@ -55,7 +55,7 @@ LDAP and HTTP auth are supported through plugins
   - Ticket Closer
   - Ticket Rewriter
 
-* The package includes many languages available through `Admin Panel > Settings > System
+* The package includes many languages available through `Admin Panel > Settings > System`
   
 ## Links
 
