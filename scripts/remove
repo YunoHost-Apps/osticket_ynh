@@ -32,14 +32,6 @@ ynh_print_info --message="Removing the MySQL database..."
 ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# REMOVE DEPENDENCIES
-#=================================================
-ynh_print_info --message="Removing dependencies..."
-
-# Remove metapackage and its dependencies
-ynh_remove_app_dependencies
-
-#=================================================
 # REMOVE APP MAIN DIR
 #=================================================
 ynh_print_info --message="Removing app main directory..."
