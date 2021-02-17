@@ -137,6 +137,9 @@ admin_mail=$(ynh_user_get_info $admin 'mail')
 #=================================================
 ynh_script_progression --message="Building plugins..."
 
+mkdir -p "$final_path/include/plugins/build/.config/composer"
+COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
+
 pushd "$final_path/include/plugins/build"
 	php${phpversion} make.php hydrate
 	php${phpversion} -dphar.readonly=0 make.php build auth-cas

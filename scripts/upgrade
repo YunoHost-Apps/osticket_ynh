@@ -67,14 +67,14 @@ ynh_abort_if_errors
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..."
-	
+
 	tmpdir="$(mktemp -d)"
 
 	mkdir $tmpdir/plugins
 	rsync -a "$final_path/include/plugins" "$tmpdir/."
 	rsync -a "$config_file" "$tmpdir/."
 	ynh_secure_remove --file="$final_path"
-	
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
 	ynh_setup_source --dest_dir="$final_path/include/plugins/build" --source_id="core-plugins"
@@ -136,6 +136,8 @@ ynh_script_progression --message="Building plugins..."
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
+	mkdir -p "$final_path/include/plugins/build/.config/composer"
+	COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 	pushd "$final_path/include/plugins/build"
 		php${phpversion} make.php hydrate
 		php${phpversion} -dphar.readonly=0 make.php build auth-cas
