@@ -12,7 +12,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 # MANAGE SCRIPT FAILURE
 #=================================================
-ynh_print_info --message="Managing script failure..."
 
 ynh_clean_setup () {
 	true
@@ -23,7 +22,6 @@ ynh_abort_if_errors
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
-ynh_print_info --message="Retrieving arguments from the manifest..."
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
@@ -37,7 +35,7 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_print_info --message="Validating installation parameters..."
+ynh_script_progression --message="Validating installation parameters..."
 
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
@@ -48,12 +46,11 @@ ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_print_info --message="Storing installation settings..."
+ynh_script_progression --message="Storing installation settings..."
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
-ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_app_setting_set --app=$app --key=language --value=$language
 
 #=================================================
@@ -61,14 +58,14 @@ ynh_app_setting_set --app=$app --key=language --value=$language
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_print_info --message="Installing dependencies..."
+ynh_script_progression --message="Installing dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_print_info --message="Creating a MySQL database..."
+ynh_script_progression --message="Creating a MySQL database..."
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
@@ -78,7 +75,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_print_info --message="Setting up source files..."
+ynh_script_progression --message="Setting up source files..."
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
@@ -99,7 +96,7 @@ ynh_setup_source --dest_dir="$final_path/include/plugins/build/preventautoscroll
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info --message="Configuring nginx web server..."
+ynh_script_progression --message="Configuring nginx web server..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -107,7 +104,7 @@ ynh_add_nginx_config
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_print_info --message="Configuring system user..."
+ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
 ynh_system_user_create --username=$app --home_dir=$final_path
@@ -115,17 +112,18 @@ ynh_system_user_create --username=$app --home_dir=$final_path
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_print_info --message="Configuring php-fpm..."
+ynh_script_progression --message="Configuring php-fpm..."
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config
+ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # SPECIFIC SETUP
 #=================================================
 # PREPARE INSTALL
 #=================================================
-ynh_print_info --message="Preparing install..."
+ynh_script_progression --message="Preparing install..."
 
 config_file=$final_path/include/ost-config.php
 cp -f ../conf/ost-sampleconfig.php "$config_file"
@@ -137,27 +135,27 @@ admin_mail=$(ynh_user_get_info $admin 'mail')
 #=================================================
 # BUILD PLUGINS
 #=================================================
-ynh_print_info --message="Building plugins..."
+ynh_script_progression --message="Building plugins..."
 
 pushd "$final_path/include/plugins/build"
-	php make.php hydrate
-	php -dphar.readonly=0 make.php build auth-cas
-	php -dphar.readonly=0 make.php build auth-ldap
-	php -dphar.readonly=0 make.php build auth-oauth
-	php -dphar.readonly=0 make.php build auth-passthru
-	php -dphar.readonly=0 make.php build storage-fs
-	php -dphar.readonly=0 make.php build storage-s3
-	php -dphar.readonly=0 make.php build archiver
-	php -dphar.readonly=0 make.php build attachment_preview
-	php -dphar.readonly=0 make.php build autocloser
-	php -dphar.readonly=0 make.php build fetch-note
-	php -dphar.readonly=0 make.php build field-radiobuttons
-	php -dphar.readonly=0 make.php build fwd-rewriter
-	php -dphar.readonly=0 make.php build mattermost
-	php -dphar.readonly=0 make.php build mentioner
-	php -dphar.readonly=0 make.php build microsoft-teams
-	php -dphar.readonly=0 make.php build slack
-	php -dphar.readonly=0 make.php build preventautoscroll
+	php${phpversion} make.php hydrate
+	php${phpversion} -dphar.readonly=0 make.php build auth-cas
+	php${phpversion} -dphar.readonly=0 make.php build auth-ldap
+	php${phpversion} -dphar.readonly=0 make.php build auth-oauth
+	php${phpversion} -dphar.readonly=0 make.php build auth-passthru
+	php${phpversion} -dphar.readonly=0 make.php build storage-fs
+	php${phpversion} -dphar.readonly=0 make.php build storage-s3
+	php${phpversion} -dphar.readonly=0 make.php build archiver
+	php${phpversion} -dphar.readonly=0 make.php build attachment_preview
+	php${phpversion} -dphar.readonly=0 make.php build autocloser
+	php${phpversion} -dphar.readonly=0 make.php build fetch-note
+	php${phpversion} -dphar.readonly=0 make.php build field-radiobuttons
+	php${phpversion} -dphar.readonly=0 make.php build fwd-rewriter
+	php${phpversion} -dphar.readonly=0 make.php build mattermost
+	php${phpversion} -dphar.readonly=0 make.php build mentioner
+	php${phpversion} -dphar.readonly=0 make.php build microsoft-teams
+	php${phpversion} -dphar.readonly=0 make.php build slack
+	php${phpversion} -dphar.readonly=0 make.php build preventautoscroll
 	cp *.phar $final_path/include/plugins/.
 popd
 ynh_secure_remove --file="$final_path/include/plugins/build"
@@ -165,21 +163,22 @@ ynh_secure_remove --file="$final_path/include/plugins/build"
 #=================================================
 # INSTALL LANGUAGE
 #=================================================
-ynh_print_info --message="Installing language..."
+ynh_script_progression --message="Installing language..."
 
 rsync -a "../conf/i18n" "$final_path/include/."
 
 #=================================================
 # SETUP APPLICATION WITH CURL
 #=================================================
-ynh_print_info --message="Setuping application with CURL..."
+ynh_script_progression --message="Setuping application with CURL..."
 
 # Set right permissions for curl install
 chown -R $app: $final_path
 
 # Set the app as temporarily public for curl call
-ynh_print_info --message="Configuring SSOwat..."
-ynh_app_setting_set --app=$app --key=skipped_uris --value="/"
+ynh_script_progression --message="Configuring SSOwat..."
+# Making the app public for curl
+ynh_permission_update --permission="main" --add="visitors"
 # Reload SSOwat config
 yunohost app ssowatconf
 
@@ -187,19 +186,16 @@ yunohost app ssowatconf
 ynh_systemd_action --service_name=nginx --action=reload
 
 # Installation with curl
-ynh_print_info --message="Finalizing installation..."
+ynh_script_progression --message="Finalizing installation..."
 ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain" "lang_id=$language" "fname=$admin_fname" "lname=$admin_lname" "admin_email=$admin_mail" "username=$admin" "passwd=$password" "passwd2=$password" "prefix=ost_" "dbhost=localhost" "dbname=$db_name" "dbuser=$db_user" "dbpass=$db_pwd"
 
 # Remove the public access
-if [ $is_public -eq 0 ]
-then
-	ynh_app_setting_delete --app=$app --key=skipped_uris
-fi
+ynh_permission_update --permission="main" --remove="visitors"
 
 #=================================================
 # FINALIZE INSTALL
 #=================================================
-ynh_print_info --message="Finalizing install..."
+ynh_script_progression --message="Finalizing install..."
 
 # Removing setup folder
 ynh_secure_remove --file="$final_path/setup"
@@ -210,7 +206,7 @@ chmod 0644 $config_file
 #=================================================
 # SET THE CRON FILE
 #=================================================
-ynh_print_info --message="Setting the cron file..."
+ynh_script_progression --message="Setting the cron file..."
 
 cp ../conf/cron /etc/cron.d/$app
 
@@ -219,7 +215,7 @@ ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path"
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
-ynh_print_info --message="Storing the config file checksum..."
+ynh_script_progression --message="Storing the config file checksum..."
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$config_file"
@@ -229,7 +225,7 @@ ynh_store_file_checksum --file="$config_file"
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
-ynh_print_info --message="Securing files and directories..."
+ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions to app files
 chown -R $app: $final_path
@@ -237,19 +233,20 @@ chown -R $app: $final_path
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_print_info --message="Configuring SSOwat..."
+ynh_script_progression --message="Configuring permissions..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
-	# unprotected_uris allows SSO credentials to be passed anyway.
-	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_print_info --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading nginx web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -257,4 +254,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info --message="Installation of $app completed"
+ynh_script_progression --message="Installation of $app completed"
