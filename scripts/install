@@ -141,7 +141,7 @@ mkdir -p "$final_path/include/plugins/build/.config/composer"
 COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 
 pushd "$final_path/include/plugins/build"
-	php${phpversion} make.php hydrate
+	#php${phpversion} make.php hydrate
 	php${phpversion} -dphar.readonly=0 make.php build auth-cas
 	php${phpversion} -dphar.readonly=0 make.php build auth-ldap
 	php${phpversion} -dphar.readonly=0 make.php build auth-oauth
@@ -211,9 +211,7 @@ chmod 0644 $config_file
 #=================================================
 ynh_script_progression --message="Setting the cron file..."
 
-cp ../conf/cron /etc/cron.d/$app
-
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
