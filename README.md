@@ -1,10 +1,10 @@
 # osTicket for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)  
-[![Install osTicket with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=osticket)
+[![Install osTicket with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
-> *This package allow you to install osTicket quickly and simply on a YunoHost server.  
-If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
+> *This package allows you to install osTicket quickly and simply on a YunoHost server.  
+If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
 osTicket is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
@@ -25,13 +25,13 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## YunoHost specific features
 
-#### Multi-users support
+#### Multi-user support
 
 LDAP and HTTP auth are supported through plugins
 
 #### Supported architectures
 
-* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/osticket%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/osticket/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/osticket%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/osticket/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/osticket%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/osticket/)
 
 ## Additional information
@@ -66,9 +66,9 @@ LDAP and HTTP auth are supported through plugins
 
 ---
 
-## Developers info
+## Developer info
 
-Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing).
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
 ```

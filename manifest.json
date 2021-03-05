@@ -13,12 +13,12 @@
         "name": "yalh76"
     },
     "requirements": {
-        "yunohost": ">= 3.5"
+        "yunohost": ">= 4.1.7.3"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php7.3-fpm",
         "mysql"
     ],
     "arguments": {
