@@ -140,24 +140,24 @@ then
 	COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 	pushd "$final_path/include/plugins/build"
 		#php${phpversion} make.php hydrate
-		php${phpversion} -dphar.readonly=0 make.php build auth-cas
-		php${phpversion} -dphar.readonly=0 make.php build auth-ldap
-		php${phpversion} -dphar.readonly=0 make.php build auth-oauth
-		php${phpversion} -dphar.readonly=0 make.php build auth-passthru
-		php${phpversion} -dphar.readonly=0 make.php build storage-fs
-		php${phpversion} -dphar.readonly=0 make.php build storage-s3
-		php${phpversion} -dphar.readonly=0 make.php build archiver
-		php${phpversion} -dphar.readonly=0 make.php build attachment_preview
-		php${phpversion} -dphar.readonly=0 make.php build autocloser
-		php${phpversion} -dphar.readonly=0 make.php build fetch-note
-		php${phpversion} -dphar.readonly=0 make.php build field-radiobuttons
-		php${phpversion} -dphar.readonly=0 make.php build fwd-rewriter
-		php${phpversion} -dphar.readonly=0 make.php build mattermost
-		php${phpversion} -dphar.readonly=0 make.php build mentioner
-		php${phpversion} -dphar.readonly=0 make.php build microsoft-teams
-		php${phpversion} -dphar.readonly=0 make.php build slack
-		php${phpversion} -dphar.readonly=0 make.php build preventautoscroll
-		cp -f *.phar $final_path/include/plugins/.
+		#php${phpversion} -dphar.readonly=0 make.php build auth-cas
+		#php${phpversion} -dphar.readonly=0 make.php build auth-ldap
+		#php${phpversion} -dphar.readonly=0 make.php build auth-oauth
+		#php${phpversion} -dphar.readonly=0 make.php build auth-passthru
+		#php${phpversion} -dphar.readonly=0 make.php build storage-fs
+		#php${phpversion} -dphar.readonly=0 make.php build storage-s3
+		#php${phpversion} -dphar.readonly=0 make.php build archiver
+		#php${phpversion} -dphar.readonly=0 make.php build attachment_preview
+		#php${phpversion} -dphar.readonly=0 make.php build autocloser
+		#php${phpversion} -dphar.readonly=0 make.php build fetch-note
+		#php${phpversion} -dphar.readonly=0 make.php build field-radiobuttons
+		#php${phpversion} -dphar.readonly=0 make.php build fwd-rewriter
+		#php${phpversion} -dphar.readonly=0 make.php build mattermost
+		#php${phpversion} -dphar.readonly=0 make.php build mentioner
+		#php${phpversion} -dphar.readonly=0 make.php build microsoft-teams
+		#php${phpversion} -dphar.readonly=0 make.php build slack
+		#php${phpversion} -dphar.readonly=0 make.php build preventautoscroll
+		#cp -f *.phar $final_path/include/plugins/.
 	popd
 	ynh_secure_remove --file="$final_path/include/plugins/build"
 fi
