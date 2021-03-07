@@ -23,15 +23,12 @@
 		upgrade=1	from_commit=81e4075468d035b12ad70936d016d45d0f124720
 		# 1.14.2
 		upgrade=1	from_commit=cadb10e497d938e0e684e43ac870a3807b4b60d9
+		# 1.14.3
+		upgrade=1	from_commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
 		backup_restore=1
 		multi_instance=1
-		# This test is no longer necessary since the version 2.7 (PR: https://github.com/YunoHost/yunohost/pull/304), you can still do it if your app could be installed with this version.
-		# incorrect_path=1
 		port_already_use=0
 		change_url=1
-;;; Levels
-	# If the level 5 (Package linter) is forced to 1. Please add justifications here.
-	Level 5=auto
 ;;; Options
 Email=
 Notification=none
@@ -40,3 +37,5 @@ Notification=none
 		name=1.14.1
 	; commit=cadb10e497d938e0e684e43ac870a3807b4b60d9
 		name=1.14.2
+	; commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
+		name=1.14.3
