@@ -134,6 +134,16 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Updating a config file..."
+
+ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
+
+chmod 400 "$final_path/include/ost-config.php"
+chown $app:$app "$final_path/include/ost-config.php"
+
+#=================================================
 # BUILD PLUGINS
 #=================================================
 ynh_script_progression --message="Building plugins..."
@@ -164,6 +174,7 @@ then
 		#cp -f *.phar $final_path/include/plugins/.
 	popd
 	ynh_secure_remove --file="$final_path/include/plugins/build"
+	ynh_secure_remove --file="$final_path/setup"
 fi
 
 #=================================================
@@ -172,20 +183,6 @@ fi
 ynh_script_progression --message="UPGRADING language..."
 
 rsync -a "../conf/i18n" "$final_path/include/."
-
-#=================================================
-# FINALIZE UPGRADE
-#=================================================
-ynh_script_progression --message="Finalizing install..."
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	# Removing setup folder
-	ynh_secure_remove --file="$final_path/setup"
-
-	# Securing config file
-	chmod 0644 $config_file
-fi
 
 #=================================================
 # SET THE CRON FILE

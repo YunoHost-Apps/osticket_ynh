@@ -125,16 +125,14 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# PREPARE INSTALL
+# ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Preparing install..."
+ynh_script_progression --message="Adding a config file..."
 
-config_file=$final_path/include/ost-config.php
-cp -f ../conf/ost-sampleconfig.php "$config_file"
+ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
 
-admin_fname=$(ynh_user_get_info $admin 'firstname')
-admin_lname=$(ynh_user_get_info $admin 'lastname')
-admin_mail=$(ynh_user_get_info $admin 'mail')
+chmod 400 "$final_path/include/ost-config.php"
+chown $app:$app "$final_path/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
@@ -179,18 +177,14 @@ rsync -a "../conf/i18n" "$final_path/include/."
 #=================================================
 ynh_script_progression --message="Setuping application with CURL..."
 
-# Set right permissions for curl install
-chown -R $app: $final_path
-
 # Set the app as temporarily public for curl call
 ynh_script_progression --message="Configuring SSOwat..."
 # Making the app public for curl
 ynh_permission_update --permission="main" --add="visitors"
-# Reload SSOwat config
-yunohost app ssowatconf
 
-# Reload Nginx
-ynh_systemd_action --service_name=nginx --action=reload
+admin_fname=$(ynh_user_get_info $admin 'firstname')
+admin_lname=$(ynh_user_get_info $admin 'lastname')
+admin_mail=$(ynh_user_get_info $admin 'mail')
 
 # Installation with curl
 ynh_script_progression --message="Finalizing installation..."
@@ -199,16 +193,7 @@ ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain"
 # Remove the public access
 ynh_permission_update --permission="main" --remove="visitors"
 
-#=================================================
-# FINALIZE INSTALL
-#=================================================
-ynh_script_progression --message="Finalizing install..."
-
-# Removing setup folder
 ynh_secure_remove --file="$final_path/setup"
-
-# Securing config file
-chmod 0644 $config_file
 
 #=================================================
 # SET THE CRON FILE
@@ -218,23 +203,7 @@ ynh_script_progression --message="Setting the cron file..."
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 
 #=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$config_file"
-
-#=================================================
 # GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..."
-
-# Set permissions to app files
-chown -R $app: $final_path
-
 #=================================================
 # SETUP SSOWAT
 #=================================================
