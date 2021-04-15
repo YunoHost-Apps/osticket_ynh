@@ -138,10 +138,8 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Updating a config file..."
 
-ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
-
 chmod 400 "$final_path/include/ost-config.php"
-chown $app:$app "$final_path/include/ost-config.php"
+chown $app:www-data "$final_path/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS

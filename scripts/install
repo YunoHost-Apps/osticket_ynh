@@ -136,10 +136,10 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 #=================================================
 ynh_script_progression --message="Adding a config file..."
 
-ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
+cp -f "../conf/ost-sampleconfig.php" "$final_path/include/ost-config.php"
 
-chmod 400 "$final_path/include/ost-config.php"
-chown $app:$app "$final_path/include/ost-config.php"
+chmod 666 "$final_path/include/ost-config.php"
+chown $app:www-data "$final_path/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
@@ -170,6 +170,7 @@ pushd "$final_path/include/plugins/build"
 	#php${phpversion} -dphar.readonly=0 make.php build preventautoscroll
 	#cp *.phar $final_path/include/plugins/.
 popd
+
 ynh_secure_remove --file="$final_path/include/plugins/build"
 
 #=================================================
@@ -201,6 +202,9 @@ ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain"
 ynh_permission_update --permission="main" --remove="visitors"
 
 ynh_secure_remove --file="$final_path/setup"
+
+chmod 400 "$final_path/include/ost-config.php"
+chown $app:www-data "$final_path/include/ost-config.php"
 
 #=================================================
 # GENERIC FINALIZATION
