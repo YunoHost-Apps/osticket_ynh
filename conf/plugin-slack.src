@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/clonemeagain/osticket-slack/archive/ca65391b546add6d29e46cd08df6af69c0d9ea58.tar.gz
-SOURCE_SUM=c8efddb3f5abbd14abc4982a11c1d4710342eee1330c1925e60375d7787ca090
+SOURCE_URL=https://github.com/clonemeagain/osticket-slack/archive/235436a8fb92168f01fa4d4e55336d203c6eded4.tar.gz
+SOURCE_SUM=c97024c86688ba73b38fa4fa4d2329076dd7a912dca5f2aea042d6b095e6ab3e
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
