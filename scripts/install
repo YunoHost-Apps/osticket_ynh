@@ -68,7 +68,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
+ynh_system_user_create --username=$app --home_dir=$final_path
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -134,9 +134,9 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a config file..."
+ynh_script_progression --message="Adding a configuration file..."
 
-cp -f "../conf/ost-sampleconfig.php" "$final_path/include/ost-config.php"
+ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
 
 chmod 666 "$final_path/include/ost-config.php"
 chown $app:www-data "$final_path/include/ost-config.php"
@@ -205,6 +205,8 @@ ynh_secure_remove --file="$final_path/setup"
 
 chmod 400 "$final_path/include/ost-config.php"
 chown $app:www-data "$final_path/include/ost-config.php"
+
+ynh_store_file_checksum --file="$final_path/include/ost-config.php"
 
 #=================================================
 # GENERIC FINALIZATION
