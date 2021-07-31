@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/Faust13/osticket-mattermost/archive/ab73d5692fd9877947a513155548c4b581d86f09.tar.gz
-SOURCE_SUM=a4cfb94776a5e995f39f084441b00fb3219d3e40989b89a89dc9e2f3f47cd2a5
+SOURCE_URL=https://github.com/pberndro/osticket-mattermost/archive/8ac5224c121e765f22237818da1b8c189a9bd647.tar.gz
+SOURCE_SUM=d18e2c796bd96c1016334195e816445d684a10e933f997a789d340eee75c7db7
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
