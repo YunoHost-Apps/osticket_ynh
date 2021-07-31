@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Open source support ticket system
 
-**Shipped version:** 1.15.2~ynh2
+**Shipped version:** 1.15.3.1~ynh1
 
 **Demo:** http://www.ostickethacks.com/demo/demo_info.php
 

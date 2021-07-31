@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Système de ticket de support open source
 
-**Version incluse :** 1.15.2~ynh2
+**Version incluse :** 1.15.3.1~ynh1
 
 **Démo :** http://www.ostickethacks.com/demo/demo_info.php
 
