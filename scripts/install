@@ -136,7 +136,7 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 #=================================================
 ynh_script_progression --message="Adding a configuration file..."
 
-ynh_add_config --template="../conf/ost-sampleconfig.php" --destination="$final_path/include/ost-config.php"
+cp -f "../conf/ost-sampleconfig.php" "$final_path/include/ost-config.php"
 
 chmod 666 "$final_path/include/ost-config.php"
 chown $app:www-data "$final_path/include/ost-config.php"
