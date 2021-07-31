@@ -23,26 +23,12 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
-config_file=$final_path/include/ost-config.php
-
 #=================================================
 # CHECK VERSION
 #=================================================
 ynh_script_progression --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..."
-
-# Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -61,12 +47,24 @@ ynh_abort_if_errors
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..."
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
+#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Making sure dedicated system user exists..."
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
+ynh_system_user_create --username=$app --home_dir=$final_path
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -80,7 +78,7 @@ then
 
 	mkdir $tmpdir/plugins
 	rsync -a "$final_path/include/plugins" "$tmpdir/."
-	rsync -a "$config_file" "$tmpdir/."
+	rsync -a "$final_path/include/ost-config.php" "$tmpdir/."
 	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
@@ -137,7 +135,9 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a config file..."
+ynh_script_progression --message="Updating a configuration file..."
+
+ynh_store_file_checksum --file="$final_path/include/ost-config.php"
 
 chmod 400 "$final_path/include/ost-config.php"
 chown $app:www-data "$final_path/include/ost-config.php"
@@ -189,15 +189,6 @@ rsync -a "../conf/i18n" "$final_path/include/."
 ynh_script_progression --message="Setting the cron file..."
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-ynh_backup_if_checksum_is_different --file="$config_file"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$config_file"
 
 #=================================================
 # GENERIC FINALIZATION
