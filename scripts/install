@@ -148,7 +148,7 @@ chown $app:www-data "$final_path/include/ost-config.php"
 ynh_script_progression --message="Building plugins..."
 
 mkdir -p "$final_path/include/plugins/build/.config/composer"
-COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
+export COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 
 pushd "$final_path/include/plugins/build"
 	php${phpversion} make.php hydrate
