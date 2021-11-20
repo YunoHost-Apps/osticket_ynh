@@ -21,9 +21,9 @@
 		# 1.14.3
 		#upgrade=1	from_commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
 		# 1.15.2~ynh1
-		upgrade=1	from_commit=20349f58ebb98ce87d3a80da18f11a7bafa04985
+		#upgrade=1	from_commit=20349f58ebb98ce87d3a80da18f11a7bafa04985
 		# 1.15.2~ynh2
-		upgrade=1	from_commit=55e224ea95f384ab8db46941366b0205cd8d3032
+		#upgrade=1	from_commit=55e224ea95f384ab8db46941366b0205cd8d3032
 		# 1.15.3.1~ynh1
 		upgrade=1	from_commit=049b860396347599e0633adf277549146644e460
 		backup_restore=1
