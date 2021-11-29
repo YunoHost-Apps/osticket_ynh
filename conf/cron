@@ -1,1 +1,1 @@
-*/5 * * * * nobody php __FINALPATH__/api/cron.php
+*/5 * * * * nobody /usr/bin/php__PHPVERSION__ __FINALPATH__/api/cron.php
