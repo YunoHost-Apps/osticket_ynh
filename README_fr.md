@@ -23,8 +23,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## Avertissements / informations importantes
 
-* Any known limitations, constrains or stuff not working, such as (but not limited to):
-    * LDAP and HTTP auth are supported through plugins
+* LDAP and HTTP auth are supported through plugins
 
 ## Documentations et ressources
 
