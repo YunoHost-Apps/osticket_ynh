@@ -1,2 +1,1 @@
-* Any known limitations, constrains or stuff not working, such as (but not limited to):
-    * LDAP and HTTP auth are supported through plugins
+* LDAP and HTTP auth are supported through plugins
