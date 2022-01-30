@@ -102,6 +102,8 @@ ynh_setup_source --dest_dir="$final_path/include/plugins/build/microsoft-teams" 
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/slack" --source_id="plugin-slack"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
 
+rsync -a "../conf/i18n" "$final_path/include/."
+
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
@@ -147,39 +149,32 @@ chown $app:www-data "$final_path/include/ost-config.php"
 #=================================================
 ynh_script_progression --message="Building plugins..."
 
-mkdir -p "$final_path/include/plugins/build/.config/composer"
+ynh_exec_as $app mkdir -p "$final_path/include/plugins/build/.config/composer"
 export COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
 
 pushd "$final_path/include/plugins/build"
-	php${phpversion} make.php hydrate
-	php${phpversion} -dphar.readonly=0 make.php build auth-cas
-	php${phpversion} -dphar.readonly=0 make.php build auth-ldap
-	php${phpversion} -dphar.readonly=0 make.php build auth-oauth
-	php${phpversion} -dphar.readonly=0 make.php build auth-passthru
-	php${phpversion} -dphar.readonly=0 make.php build storage-fs
-	php${phpversion} -dphar.readonly=0 make.php build storage-s3
-	php${phpversion} -dphar.readonly=0 make.php build archiver
-	php${phpversion} -dphar.readonly=0 make.php build attachment_preview
-	php${phpversion} -dphar.readonly=0 make.php build autocloser
-	php${phpversion} -dphar.readonly=0 make.php build fetch-note
-	php${phpversion} -dphar.readonly=0 make.php build field-radiobuttons
-	php${phpversion} -dphar.readonly=0 make.php build fwd-rewriter
-	php${phpversion} -dphar.readonly=0 make.php build mattermost
-	php${phpversion} -dphar.readonly=0 make.php build mentioner
-	php${phpversion} -dphar.readonly=0 make.php build microsoft-teams
-	php${phpversion} -dphar.readonly=0 make.php build slack
-	php${phpversion} -dphar.readonly=0 make.php build preventautoscroll
-	cp *.phar $final_path/include/plugins/.
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-oauth
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-passthru
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-fs
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-s3
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build archiver
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build attachment_preview
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build autocloser
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fetch-note
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mattermost
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mentioner
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
+	ynh_exec_warn_less ynh_exec_as $app cp *.phar $final_path/include/plugins/.
 popd
 
 ynh_secure_remove --file="$final_path/include/plugins/build"
-
-#=================================================
-# INSTALL LANGUAGE
-#=================================================
-ynh_script_progression --message="Installing language..."
-
-rsync -a "../conf/i18n" "$final_path/include/."
 
 #=================================================
 # SETUP APPLICATION WITH CURL
