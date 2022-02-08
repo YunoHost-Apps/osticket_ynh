@@ -26,6 +26,8 @@
 		#upgrade=1	from_commit=55e224ea95f384ab8db46941366b0205cd8d3032
 		# 1.15.3.1~ynh1
 		upgrade=1	from_commit=049b860396347599e0633adf277549146644e460
+		# 1.15.4~ynh2
+		upgrade=1	from_commit=9af7e309b19966c19dab60fbb54a46b6d2269323
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
@@ -46,3 +48,5 @@ Notification=none
 		name=1.15.2~ynh2
 	; commit=049b860396347599e0633adf277549146644e460
 		name=1.15.3.1~ynh1
+	; commit=9af7e309b19966c19dab60fbb54a46b6d2269323
+		name=1.15.4~ynh2
