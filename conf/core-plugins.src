@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/osTicket/osTicket-plugins/archive/fc089b9339c2a89e293b99be878252f03276cdc7.tar.gz
-SOURCE_SUM=227dd80a42cd9b66f45b0c60779bba4a1d1d7b71e59311f472960fdf1293ec9f
+SOURCE_URL=https://github.com/osTicket/osTicket-plugins/archive/845bc9edcd6daf20cc4f3dc1c84e2e168c2bc9d5.tar.gz
+SOURCE_SUM=74ee58abc3a9e0bfce7fed5c671abc87421a97b1deca550865e461cb05e728cc
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
