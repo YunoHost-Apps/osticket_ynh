@@ -6,7 +6,7 @@
         "en": "Open source support ticket system",
         "fr": "Système de ticket de support open source"
     },
-    "version": "1.15.4~ynh2",
+    "version": "1.16~ynh1",
     "url": "https://osticket.com",
     "upstream": {
         "license": "GPL-2.0-or-later",

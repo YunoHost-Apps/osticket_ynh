@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/osTicket/osTicket/releases/download/v1.15.4/osTicket-v1.15.4.zip
-SOURCE_SUM=6c7cf5fe74258dd0beac6176c438468f468a0a3f07f1f6a0349cc68a9e514302
+SOURCE_URL=https://github.com/osTicket/osTicket/releases/download/v1.16/osTicket-v1.16.zip
+SOURCE_SUM=cebf6bb58e41044cee7c6e1493e6e88e7f5aa8739e7260d034001b613fe1eedf
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true

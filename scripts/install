@@ -89,7 +89,6 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build" --source_id="core-plugins"
-ynh_replace_string --match_string="net_ldap2" --replace_string="Net_LDAP2" --target_file="$final_path/include/plugins/build/auth-ldap/plugin.php"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/archiver" --source_id="plugin-archiver"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
 ynh_setup_source --dest_dir="$final_path/include/plugins/build/autocloser" --source_id="plugin-autocloser"
