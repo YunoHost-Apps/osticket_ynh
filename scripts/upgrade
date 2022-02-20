@@ -178,6 +178,15 @@ then
 fi
 
 #=================================================
+# UPGRADE OSTICKET
+#=================================================
+ynh_script_progression --message="Upgrading the application..."
+
+pushd "$final_path"
+	php$phpversion manage.php upgrade
+popd
+
+#=================================================
 # SET THE CRON FILE
 #=================================================
 ynh_script_progression --message="Setting the cron file..."
