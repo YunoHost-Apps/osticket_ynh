@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # osTicket for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Working status](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)  
 [![Install osTicket with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -23,7 +23,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## Screenshots
 
-![](./doc/screenshots/screenshot.png)
+![Screenshot of osTicket](./doc/screenshots/screenshot.png)
 
 ## Disclaimers / important information
 
@@ -31,21 +31,22 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## Documentation and resources
 
-* Official app website: https://osticket.com
-* Official user documentation: https://docs.osticket.com
-* Upstream app code repository: https://github.com/osTicket/osTicket
-* YunoHost documentation for this app: https://yunohost.org/app_osticket
-* Report a bug: https://github.com/YunoHost-Apps/osticket_ynh/issues
+* Official app website: <https://osticket.com>
+* Official user documentation: <https://docs.osticket.com>
+* Upstream app code repository: <https://github.com/osTicket/osTicket>
+* YunoHost documentation for this app: <https://yunohost.org/app_osticket>
+* Report a bug: <https://github.com/YunoHost-Apps/osticket_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/osticket_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade osticket -u https://github.com/YunoHost-Apps/osticket_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
