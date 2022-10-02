@@ -15,21 +15,23 @@
 		setup_public=1
 		upgrade=1
 		# 1.14.1
-		#upgrade=1	from_commit=81e4075468d035b12ad70936d016d45d0f124720
+		upgrade=0	from_commit=81e4075468d035b12ad70936d016d45d0f124720
 		# 1.14.2
-		#upgrade=1	from_commit=cadb10e497d938e0e684e43ac870a3807b4b60d9
+		upgrade=0	from_commit=cadb10e497d938e0e684e43ac870a3807b4b60d9
 		# 1.14.3
-		#upgrade=1	from_commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
+		upgrade=0	from_commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
 		# 1.15.2~ynh1
-		#upgrade=1	from_commit=20349f58ebb98ce87d3a80da18f11a7bafa04985
+		upgrade=0	from_commit=20349f58ebb98ce87d3a80da18f11a7bafa04985
 		# 1.15.2~ynh2
-		#upgrade=1	from_commit=55e224ea95f384ab8db46941366b0205cd8d3032
+		upgrade=0	from_commit=55e224ea95f384ab8db46941366b0205cd8d3032
 		# 1.15.3.1~ynh1
-		upgrade=1	from_commit=049b860396347599e0633adf277549146644e460
+		upgrade=0	from_commit=049b860396347599e0633adf277549146644e460
 		# 1.15.4~ynh2
 		upgrade=1	from_commit=9af7e309b19966c19dab60fbb54a46b6d2269323
 		# 1.16~ynh1
 		upgrade=1	from_commit=37c6fe88f2a06e9b84fd2ad486b5e51f6345254d
+		# 1.16.3~ynh1
+		upgrade=1	from_commit=9624b86e211364645958cf44596450faa3c28783
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
@@ -37,20 +39,3 @@
 ;;; Options
 Email=
 Notification=none
-;;; Upgrade options
-	; commit=81e4075468d035b12ad70936d016d45d0f124720
-		name=1.14.1
-	; commit=cadb10e497d938e0e684e43ac870a3807b4b60d9
-		name=1.14.2
-	; commit=fe0bd01ffa787713e2b36408abe1e44033aacb69
-		name=1.14.3
-	; commit=20349f58ebb98ce87d3a80da18f11a7bafa04985
-		name=1.15.2~ynh1
-	; commit=55e224ea95f384ab8db46941366b0205cd8d3032
-		name=1.15.2~ynh2
-	; commit=049b860396347599e0633adf277549146644e460
-		name=1.15.3.1~ynh1
-	; commit=9af7e309b19966c19dab60fbb54a46b6d2269323
-		name=1.15.4~ynh2
-	; commit=37c6fe88f2a06e9b84fd2ad486b5e51f6345254d
-		name=1.16~ynh1
