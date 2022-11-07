@@ -19,7 +19,6 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 **Shipped version:** 1.17~ynh1
 
-
 **Demo:** http://www.ostickethacks.com/demo/demo_info.php
 
 ## Screenshots
