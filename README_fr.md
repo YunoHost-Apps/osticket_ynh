@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # osTicket pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)
+
 [![Installer osTicket avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
 *[Read this readme in english.](./README.md)*
