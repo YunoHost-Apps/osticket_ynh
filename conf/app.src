@@ -1,7 +1,0 @@
-SOURCE_URL=https://github.com/osTicket/osTicket/releases/download/v1.17.3/osTicket-v1.17.3.zip
-SOURCE_SUM=be3ade536a19b875e16fe0d9716e07f3897f5c0cdbd4efe4ff17ab262d98bed3
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=zip
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=
-SOURCE_EXTRACT=true

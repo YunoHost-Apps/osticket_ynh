@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/183a4248e9c605ee403a0054dbf076616b0459d2.tar.gz
-SOURCE_SUM=f53388328d6647ba11a0586dfc46ca8f42e418688098a9ea0e9e7c8ec4f1e255
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=

@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/clonemeagain/osticket-plugin-preventautoscroll/archive/2b5c51200d0f64da15d1f504e9294d877577fc46.tar.gz
-SOURCE_SUM=0e31ea961668097e739de0da4aaf41b36ebf71a56508642500ec3f5ec59ede19
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=

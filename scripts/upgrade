@@ -12,16 +12,16 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
+#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=1
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-language=$(ynh_app_setting_get --app=$app --key=language)
-admin=$(ynh_app_setting_get --app=$app --key=admin)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
+#REMOVEME? path=$(ynh_app_setting_get --app=$app --key=path)
+#REMOVEME? language=$(ynh_app_setting_get --app=$app --key=language)
+#REMOVEME? admin=$(ynh_app_setting_get --app=$app --key=admin)
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+#REMOVEME? db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
 #=================================================
 # CHECK VERSION
@@ -33,16 +33,16 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=1
+#REMOVEME? ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=1
 
 # Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
+#REMOVEME? ynh_backup_before_upgrade
+#REMOVEME? ynh_clean_setup () {
 	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
+#REMOVEME? 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -52,8 +52,8 @@ ynh_abort_if_errors
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
+#REMOVEME? if ynh_legacy_permissions_exists; then
+#REMOVEME? 	ynh_legacy_permissions_delete_all
 
 	ynh_app_setting_delete --app=$app --key=is_public
 fi
@@ -61,10 +61,10 @@ fi
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+#REMOVEME? ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
+#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -77,42 +77,42 @@ then
 	tmpdir="$(mktemp -d)"
 
 	mkdir $tmpdir/plugins
-	rsync -a "$final_path/include/plugins" "$tmpdir/."
-	rsync -a "$final_path/include/ost-config.php" "$tmpdir/."
-	ynh_secure_remove --file="$final_path"
+	rsync -a "$install_dir/include/plugins" "$tmpdir/."
+	rsync -a "$install_dir/include/ost-config.php" "$tmpdir/."
+#REMOVEME? 	ynh_secure_remove --file="$install_dir"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build" --source_id="core-plugins"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/archiver" --source_id="plugin-archiver"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/autocloser" --source_id="plugin-autocloser"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/mattermost" --source_id="plugin-mattermost"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/mentioner" --source_id="plugin-mentioner"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/slack" --source_id="plugin-slack"
-	ynh_setup_source --dest_dir="$final_path/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
+	ynh_setup_source --dest_dir="$install_dir"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/slack" --source_id="plugin-slack"
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
 
-	rsync -a "$tmpdir/plugins" "$final_path/include/."
-	rsync -a "$tmpdir/ost-config.php" "$final_path/include/."
+	rsync -a "$tmpdir/plugins" "$install_dir/include/."
+	rsync -a "$tmpdir/ost-config.php" "$install_dir/include/."
 	ynh_secure_remove --file="$tmpdir"
 fi
 
-rsync -a "../conf/i18n" "$final_path/include/."
+rsync -a "../conf/i18n" "$install_dir/include/."
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=1
+#REMOVEME? ynh_script_progression --message="Upgrading dependencies..." --weight=1
 
-ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -121,7 +121,7 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+#REMOVEME? phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -138,10 +138,10 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Updating a configuration file..." --weight=1
 
-ynh_store_file_checksum --file="$final_path/include/ost-config.php"
+ynh_store_file_checksum --file="$install_dir/include/ost-config.php"
 
-chmod 400 "$final_path/include/ost-config.php"
-chown $app:www-data "$final_path/include/ost-config.php"
+chmod 400 "$install_dir/include/ost-config.php"
+chown $app:www-data "$install_dir/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
@@ -150,9 +150,9 @@ chown $app:www-data "$final_path/include/ost-config.php"
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Building plugins..." --weight=1
-	ynh_exec_as $app mkdir -p "$final_path/include/plugins/build/.config/composer"
-	COMPOSER_HOME="$final_path/include/plugins/build/.config/composer"
-	pushd "$final_path/include/plugins/build"
+	ynh_exec_as $app mkdir -p "$install_dir/include/plugins/build/.config/composer"
+	COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
+	pushd "$install_dir/include/plugins/build"
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
@@ -171,10 +171,10 @@ then
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
 		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
-		ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $final_path/include/plugins/.
+		ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $install_dir/include/plugins/.
 	popd
-	ynh_secure_remove --file="$final_path/include/plugins/build"
-	ynh_secure_remove --file="$final_path/setup"
+#REMOVEME? 	ynh_secure_remove --file="$install_dir/include/plugins/build"
+#REMOVEME? 	ynh_secure_remove --file="$install_dir/setup"
 fi
 
 #=================================================
@@ -182,7 +182,7 @@ fi
 #=================================================
 ynh_script_progression --message="Upgrading the application..." --weight=1
 
-pushd "$final_path"
+pushd "$install_dir"
 	php$phpversion manage.php upgrade
 popd
 
@@ -198,9 +198,9 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
-ynh_systemd_action --service_name=nginx --action=reload
+#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

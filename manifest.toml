@@ -1,0 +1,123 @@
+packaging_format = 2
+
+id = "osticket"
+name = "osTicket"
+description.en = "Open source support ticket system"
+description.fr = "Système de ticket de support open source"
+
+version = "1.17.3~ynh1"
+
+maintainers = ["yalh76"]
+
+[upstream]
+license = "GPL-2.0-or-later"
+website = "https://osticket.com"
+demo = "http://www.ostickethacks.com/demo/demo_info.php"
+userdoc = "https://docs.osticket.com"
+code = "https://github.com/osTicket/osTicket"
+cpe = "???" # FIXME: optional but recommended if relevant, this is meant to contain the Common Platform Enumeration, which is sort of a standard id for applications defined by the NIST. In particular, Yunohost may use this is in the future to easily track CVE (=security reports) related to apps. The CPE may be obtained by searching here: https://nvd.nist.gov/products/cpe/search. For example, for Nextcloud, the CPE is 'cpe:2.3:a:nextcloud:nextcloud' (no need to include the version number)
+fund = "???" # FIXME: optional but recommended (or remove if irrelevant / not applicable). This is meant to be an URL where people can financially support this app, especially when its development is based on volunteers and/or financed by its community. YunoHost may later advertise it in the webadmin.
+
+[integration]
+yunohost = ">= 4.3.0"
+architectures = "all" # FIXME: can be replaced by a list of supported archs using the dpkg --print-architecture nomenclature (amd64/i386/armhf/arm64), for example: ["amd64", "i386"]
+multi_instance = true
+ldap = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "sso" key : the "ldap" key corresponds to wether or not a user *can* login on the app using its YunoHost credentials.
+sso = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "ldap" key : the "sso" key corresponds to wether or not a user is *automatically logged-in* on the app when logged-in on the YunoHost portal.
+disk = "50M" # FIXME: replace with an **estimate** minimum disk requirement. e.g. 20M, 400M, 1G, ...
+ram.build = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+
+[install]
+    [install.domain]
+    # this is a generic question - ask strings are automatically handled by Yunohost's core
+    type = "domain"
+
+    [install.path]
+    # this is a generic question - ask strings are automatically handled by Yunohost's core
+    type = "path"
+    default = "/osticket"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "string"
+    choices = ["en_US", "fr", "ar_EG", "ar_SA", "az", "bg", "bn", "bs", "ca", "cs", "da", "de", "el", "en_GB", "es_AR", "es_ES", "es_MX", "et", "eu", "fa", "fi", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "km", "ko", "lt", "lv", "mk", "mn", "ms", "nl", "no", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sl", "sq", "sr", "sr_CS", "sv_SE", "sw", "th", "tr", "uk", "ur_IN", "ur_PK", "vi", "zh_CN", "zh_TW"]
+    default = "fr"
+
+    [install.admin]
+    # this is a generic question - ask strings are automatically handled by Yunohost's core
+    type = "user"
+
+    [install.password]
+    # this is a generic question - ask strings are automatically handled by Yunohost's core
+    type = "password"
+
+[resources]
+    [resources.sources]
+        [resources.sources.plugin-autocloser]
+        url = "https://github.com/clonemeagain/plugin-autocloser/archive/cc986b6a6c687144dca258e42dea6e00eca126df.tar.gz"
+        sha256 = "ba4dbdddaa340b8cf457cb3b04beb510565c411cca19d67dbab764b562c47b65"
+
+        [resources.sources.plugin-preventautoscroll]
+        url = "https://github.com/clonemeagain/osticket-plugin-preventautoscroll/archive/2b5c51200d0f64da15d1f504e9294d877577fc46.tar.gz"
+        sha256 = "0e31ea961668097e739de0da4aaf41b36ebf71a56508642500ec3f5ec59ede19"
+
+        [resources.sources.plugin-microsoft-teams]
+        url = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/183a4248e9c605ee403a0054dbf076616b0459d2.tar.gz"
+        sha256 = "f53388328d6647ba11a0586dfc46ca8f42e418688098a9ea0e9e7c8ec4f1e255"
+
+        [resources.sources.core-plugins]
+        url = "https://github.com/osTicket/osTicket-plugins/archive/fc089b9339c2a89e293b99be878252f03276cdc7.tar.gz"
+        sha256 = "227dd80a42cd9b66f45b0c60779bba4a1d1d7b71e59311f472960fdf1293ec9f"
+
+        [resources.sources.plugin-mentioner]
+        url = "https://github.com/clonemeagain/osticket-plugin-mentioner/archive/c2a8bcd93a8d559b783871a7843903ce2d1a9ff2.tar.gz"
+        sha256 = "6c72a2a86599e3109e5e02194e4202a36e2326b25f916333f134a02cc8061196"
+
+        [resources.sources.plugin-fwd-rewriter]
+        url = "https://github.com/clonemeagain/plugin-fwd-rewriter/archive/2c5e3bad0f0cb94a1b51a33a854cfd551ea67e30.tar.gz"
+        sha256 = "c12f1757110ef5141f274b5dc10be186c1d608d2bed74d48f41bce956abc98a3"
+
+        [resources.sources.main]
+        url = "https://github.com/osTicket/osTicket/releases/download/v1.17.3/osTicket-v1.17.3.zip"
+        sha256 = "be3ade536a19b875e16fe0d9716e07f3897f5c0cdbd4efe4ff17ab262d98bed3"
+
+        [resources.sources.plugin-attachment_preview]
+        url = "https://github.com/clonemeagain/attachment_preview/archive/0a3e293f4c296981e9eb7252f29ebbea173fcf9f.tar.gz"
+        sha256 = "4258cdd2781d84e0329aaa95938fb4c2baff2606c15b0faec85bd18be790f11e"
+
+        [resources.sources.plugin-fetch-note]
+        url = "https://github.com/bkonetzny/osticket-fetch-note/archive/7bd28052a33d448db68e0393ca5d92f1b1744283.tar.gz"
+        sha256 = "d95c8c744cdad20b25fe4053ca795d118e82c36a5f0b86973da47209b5ac9cc0"
+
+        [resources.sources.plugin-slack]
+        url = "https://github.com/clonemeagain/osticket-slack/archive/235436a8fb92168f01fa4d4e55336d203c6eded4.tar.gz"
+        sha256 = "c97024c86688ba73b38fa4fa4d2329076dd7a912dca5f2aea042d6b095e6ab3e"
+
+        [resources.sources.plugin-field-radiobuttons]
+        url = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz"
+        sha256 = "cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348"
+
+        [resources.sources.plugin-mattermost]
+        url = "https://github.com/pberndro/osticket-mattermost/archive/8ac5224c121e765f22237818da1b8c189a9bd647.tar.gz"
+        sha256 = "d18e2c796bd96c1016334195e816445d684a10e933f997a789d340eee75c7db7"
+
+        [resources.sources.plugin-archiver]
+        url = "https://github.com/clonemeagain/osticket-plugin-archiver/archive/df6eab6bb6a65d6aa02215b1becb01238883c62f.tar.gz"
+        sha256 = "c3fa4416853fe2eb918cd68a6f0965c4b66dd411b79993614a47eea5baa095f2"
+
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.database]
+    type = "mysql"
