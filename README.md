@@ -26,10 +26,6 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ![Screenshot of osTicket](./doc/screenshots/screenshot.png)
 
-## Disclaimers / important information
-
-* LDAP and HTTP auth are supported through plugins
-
 ## Documentation and resources
 
 * Official app website: <https://osticket.com>
