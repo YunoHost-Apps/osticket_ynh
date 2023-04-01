@@ -107,9 +107,6 @@ ynh_secure_remove --file="$install_dir/include/plugins/build"
 #=================================================
 ynh_script_progression --message="Setuping application with CURL..." --weight=1
 
-# Set the app as temporarily public for curl call
-ynh_script_progression --message="Configuring SSOwat..." --weight=1
-
 admin_fname=$(ynh_user_get_info $admin 'firstname')
 admin_lname=$(ynh_user_get_info $admin 'lastname')
 admin_mail=$(ynh_user_get_info $admin 'mail')
