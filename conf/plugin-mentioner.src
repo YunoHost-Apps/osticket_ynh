@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/clonemeagain/osticket-plugin-mentioner/archive/c2a8bcd93a8d559b783871a7843903ce2d1a9ff2.tar.gz
-SOURCE_SUM=6c72a2a86599e3109e5e02194e4202a36e2326b25f916333f134a02cc8061196
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=

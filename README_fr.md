@@ -18,17 +18,13 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 osTicket is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
 
-**Version incluse :** 1.17.2~ynh2
+**Version incluse :** 1.17.3~ynh1
 
 **Démo :** http://www.ostickethacks.com/demo/demo_info.php
 
 ## Captures d’écran
 
 ![Capture d’écran de osTicket](./doc/screenshots/screenshot.png)
-
-## Avertissements / informations importantes
-
-* LDAP and HTTP auth are supported through plugins
 
 ## Documentations et ressources
 

@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz
-SOURCE_SUM=cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=

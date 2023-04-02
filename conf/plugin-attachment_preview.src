@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/clonemeagain/attachment_preview/archive/0a3e293f4c296981e9eb7252f29ebbea173fcf9f.tar.gz
-SOURCE_SUM=4258cdd2781d84e0329aaa95938fb4c2baff2606c15b0faec85bd18be790f11e
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=

@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/clonemeagain/plugin-autocloser/archive/cc986b6a6c687144dca258e42dea6e00eca126df.tar.gz
-SOURCE_SUM=ba4dbdddaa340b8cf457cb3b04beb510565c411cca19d67dbab764b562c47b65
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=
