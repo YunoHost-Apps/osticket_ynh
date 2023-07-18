@@ -138,6 +138,10 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.show_tile = false
+    api.protected = true
 
     [resources.apt]
     packages = "mariadb-server php8.0-mysql php8.0-gd php-php-gettext php8.0-imap php8.0-fpm php8.0-mbstring php8.0-xml php8.0-zip php8.0-intl php8.0-curl curl"
