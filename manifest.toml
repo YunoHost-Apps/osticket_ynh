@@ -17,7 +17,7 @@ userdoc = "https://docs.osticket.com"
 code = "https://github.com/osTicket/osTicket"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -56,8 +56,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.plugin-autocloser]
-        url = "https://github.com/clonemeagain/plugin-autocloser/archive/cc986b6a6c687144dca258e42dea6e00eca126df.tar.gz"
-        sha256 = "ba4dbdddaa340b8cf457cb3b04beb510565c411cca19d67dbab764b562c47b65"
+        url = "https://github.com/clonemeagain/plugin-autocloser/archive/b9db66273728296723a3bb9048bfce8e3d7b2d24.tar.gz"
+        sha256 = "ae255123278b2a04046c3efd49a042f9fa18cd08ee43e28ced34aa44cf4f9c7c"
         autoupdate.upstream = "https://github.com/clonemeagain/plugin-autocloser"
         autoupdate.strategy = "latest_github_commit"
 
@@ -68,20 +68,20 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-microsoft-teams]
-        url = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/183a4248e9c605ee403a0054dbf076616b0459d2.tar.gz"
-        sha256 = "f53388328d6647ba11a0586dfc46ca8f42e418688098a9ea0e9e7c8ec4f1e255"
+        url = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/bebf7010e8817cf5495e9d3ab6f30e0e8e270d41.tar.gz"
+        sha256 = "7e9825d26b7758255d73c79f763909f22b1b1d909cb226d901f1231ec98b3fd2"
         autoupdate.upstream = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.core-plugins]
-        url = "https://github.com/osTicket/osTicket-plugins/archive/fc089b9339c2a89e293b99be878252f03276cdc7.tar.gz"
-        sha256 = "227dd80a42cd9b66f45b0c60779bba4a1d1d7b71e59311f472960fdf1293ec9f"
+        url = "https://github.com/osTicket/osTicket-plugins/archive/685d03a06a6167f348547a444973ce97b68b73ba.tar.gz"
+        sha256 = "5eaa2aaa9595c5f269ea7c288f27f8fae65af8c4cdef4bebfa1d7de2090aed18"
         autoupdate.upstream = "https://github.com/osTicket/osTicket-plugins"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-mentioner]
-        url = "https://github.com/clonemeagain/osticket-plugin-mentioner/archive/c2a8bcd93a8d559b783871a7843903ce2d1a9ff2.tar.gz"
-        sha256 = "6c72a2a86599e3109e5e02194e4202a36e2326b25f916333f134a02cc8061196"
+        url = "https://github.com/clonemeagain/osticket-plugin-mentioner/archive/48db3aca9f0c79b90315a0b0575e21617aa2c57c.tar.gz"
+        sha256 = "c88a925be63c2b5cf2677f23e442a3c31a6657835f8c3423828e01b7656cac33"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-plugin-mentioner"
         autoupdate.strategy = "latest_github_commit"
 
@@ -97,8 +97,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
-        url = "https://github.com/clonemeagain/attachment_preview/archive/0a3e293f4c296981e9eb7252f29ebbea173fcf9f.tar.gz"
-        sha256 = "4258cdd2781d84e0329aaa95938fb4c2baff2606c15b0faec85bd18be790f11e"
+        url = "https://github.com/clonemeagain/attachment_preview/archive/de4d6a83fc7947d39b3493ad1ad1ef864a3a80ce.tar.gz"
+        sha256 = "1ad19e824a6ea71ff17e7d0b3665d77d1b223a8a77d1d810b10f76b6879d1864"
         autoupdate.upstream = "https://github.com/clonemeagain/attachment_preview"
         autoupdate.strategy = "latest_github_commit"
 
@@ -109,8 +109,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-slack]
-        url = "https://github.com/clonemeagain/osticket-slack/archive/235436a8fb92168f01fa4d4e55336d203c6eded4.tar.gz"
-        sha256 = "c97024c86688ba73b38fa4fa4d2329076dd7a912dca5f2aea042d6b095e6ab3e"
+        url = "https://github.com/clonemeagain/osticket-slack/archive/15c0cadfbc0c0548cde5750eda5f29d36381683b.tar.gz"
+        sha256 = "635e024176742116f288146b6d7397f614be0ef812cbbffbc649789cc51bbb79"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-slack"
         autoupdate.strategy = "latest_github_commit"
 
@@ -127,8 +127,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-archiver]
-        url = "https://github.com/clonemeagain/osticket-plugin-archiver/archive/df6eab6bb6a65d6aa02215b1becb01238883c62f.tar.gz"
-        sha256 = "c3fa4416853fe2eb918cd68a6f0965c4b66dd411b79993614a47eea5baa095f2"
+        url = "https://github.com/clonemeagain/osticket-plugin-archiver/archive/a1e20bb230f0943769c0e548539d553881ecfb1e.tar.gz"
+        sha256 = "f2b549e208ccecdb7334dae568eef90fdaecad381f274d6af7a7564b5f9b03fe"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-plugin-archiver"
         autoupdate.strategy = "latest_github_commit"
 
@@ -138,9 +138,13 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.show_tile = false
+    api.protected = true
 
     [resources.apt]
-    packages = "mariadb-server php8.0-mysql php8.0-gd php-php-gettext php8.0-imap php8.0-fpm php8.0-mbstring php8.0-xml php8.0-zip php8.0-intl php8.0-curl curl"
+    packages = "mariadb-server php8.1-mysql php8.1-gd php-php-gettext php8.1-imap php8.1-fpm php8.1-mbstring php8.1-xml php8.1-zip php8.1-intl php8.1-curl curl"
     
     [resources.database]
     type = "mysql"
