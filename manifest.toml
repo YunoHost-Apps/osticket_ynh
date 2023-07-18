@@ -74,8 +74,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.core-plugins]
-        url = "https://github.com/osTicket/osTicket-plugins/archive/508b15e99a1f344663eb612e4f6b8b16d52ea9e2.tar.gz"
-        sha256 = "01c080bebc28e8a7ef93b7e94b70428b4e860a7b8c128ca318dfe9a46f08eecb"
+        url = "https://github.com/osTicket/osTicket-plugins/archive/4b545313f38a2f7f0e5b7e9b9c5e89dd629e51cf.tar.gz"
+        sha256 = "3ef516cea9e0447cb1a86564fcb2dd84676e507906829f181c1c454fbc91fcf4"
         autoupdate.upstream = "https://github.com/osTicket/osTicket-plugins"
         autoupdate.strategy = "latest_github_commit"
 
