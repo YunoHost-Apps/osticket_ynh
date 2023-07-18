@@ -17,7 +17,7 @@ userdoc = "https://docs.osticket.com"
 code = "https://github.com/osTicket/osTicket"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = true
 ldap = false
