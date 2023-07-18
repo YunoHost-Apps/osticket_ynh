@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.17.3~ynh1"
+version = "1.18~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -74,8 +74,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.core-plugins]
-        url = "https://github.com/osTicket/osTicket-plugins/archive/685d03a06a6167f348547a444973ce97b68b73ba.tar.gz"
-        sha256 = "5eaa2aaa9595c5f269ea7c288f27f8fae65af8c4cdef4bebfa1d7de2090aed18"
+        url = "https://github.com/osTicket/osTicket-plugins/archive/508b15e99a1f344663eb612e4f6b8b16d52ea9e2.tar.gz"
+        sha256 = "01c080bebc28e8a7ef93b7e94b70428b4e860a7b8c128ca318dfe9a46f08eecb"
         autoupdate.upstream = "https://github.com/osTicket/osTicket-plugins"
         autoupdate.strategy = "latest_github_commit"
 
@@ -92,8 +92,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.main]
-        url = "https://github.com/osTicket/osTicket/releases/download/v1.17.3/osTicket-v1.17.3.zip"
-        sha256 = "be3ade536a19b875e16fe0d9716e07f3897f5c0cdbd4efe4ff17ab262d98bed3"
+        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.tar.gz"
+        sha256 = "5041cd079f16b1e98718d4397a878f185d69d72ec197b3875c8da5856f8ca774"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
