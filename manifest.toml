@@ -42,7 +42,7 @@ ram.runtime = "50M"
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
     type = "string"
-    choices = ["en_US", "fr", "ar_EG", "ar_SA", "az", "bg", "bn", "bs", "ca", "cs", "da", "de", "el", "en_GB", "es_AR", "es_ES", "es_MX", "et", "eu", "fa", "fi", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "km", "ko", "lt", "lv", "mk", "mn", "ms", "nl", "no", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sl", "sq", "sr", "sr_CS", "sv_SE", "sw", "th", "tr", "uk", "ur_IN", "ur_PK", "vi", "zh_CN", "zh_TW"]
+    select = ["en_US", "fr", "ar_EG", "ar_SA", "az", "bg", "bn", "bs", "ca", "cs", "da", "de", "el", "en_GB", "es_AR", "es_ES", "es_MX", "et", "eu", "fa", "fi", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "km", "ko", "lt", "lv", "mk", "mn", "ms", "nl", "no", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sl", "sq", "sr", "sr_CS", "sv_SE", "sw", "th", "tr", "uk", "ur_IN", "ur_PK", "vi", "zh_CN", "zh_TW"]
     default = "fr"
 
     [install.admin]
@@ -144,7 +144,7 @@ ram.runtime = "50M"
     api.protected = true
 
     [resources.apt]
-    packages = "mariadb-server php8.1-mysql php8.1-gd php-php-gettext php8.1-imap php8.1-fpm php8.1-mbstring php8.1-xml php8.1-zip php8.1-intl php8.1-curl curl"
+    packages = "mariadb-server php8.2-mysql php8.2-gd php-php-gettext php8.2-imap php8.2-fpm php8.2-mbstring php8.2-xml php8.2-zip php8.2-intl php8.2-curl curl"
     
     [resources.database]
     type = "mysql"
