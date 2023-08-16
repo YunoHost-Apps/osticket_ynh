@@ -43,20 +43,8 @@ ynh_script_progression --message="Configuring PHP-FPM..." --weight=1
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low
 
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=1
-
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# SPECIFIC SETUP
-#=================================================
-# SET THE CRON FILE
-#=================================================
-ynh_script_progression --message="Setting the cron file..." --weight=1
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 
