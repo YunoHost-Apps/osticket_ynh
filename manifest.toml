@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18~ynh3"
+version = "1.18~ynh4"
 
 maintainers = ["yalh76"]
 
@@ -17,7 +17,7 @@ userdoc = "https://docs.osticket.com"
 code = "https://github.com/osTicket/osTicket"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
