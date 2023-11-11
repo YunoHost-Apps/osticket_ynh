@@ -31,7 +31,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 * Official app website: <https://osticket.com>
 * Official user documentation: <https://docs.osticket.com>
 * Upstream app code repository: <https://github.com/osTicket/osTicket>
-* YunoHost documentation for this app: <https://yunohost.org/app_osticket>
+* YunoHost Store: <https://apps.yunohost.org/app/osticket>
 * Report a bug: <https://github.com/YunoHost-Apps/osticket_ynh/issues>
 
 ## Developer info
