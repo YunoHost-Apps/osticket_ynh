@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18~ynh4"
+version = "1.18.1~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -17,11 +17,14 @@ userdoc = "https://docs.osticket.com"
 code = "https://github.com/osTicket/osTicket"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = true
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -41,8 +44,8 @@ ram.runtime = "50M"
     [install.language]
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
-    type = "string"
-    select = ["en_US", "fr", "ar_EG", "ar_SA", "az", "bg", "bn", "bs", "ca", "cs", "da", "de", "el", "en_GB", "es_AR", "es_ES", "es_MX", "et", "eu", "fa", "fi", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "km", "ko", "lt", "lv", "mk", "mn", "ms", "nl", "no", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sl", "sq", "sr", "sr_CS", "sv_SE", "sw", "th", "tr", "uk", "ur_IN", "ur_PK", "vi", "zh_CN", "zh_TW"]
+    type = "select"
+    choices = ["en_US", "fr", "ar_EG", "ar_SA", "az", "bg", "bn", "bs", "ca", "cs", "da", "de", "el", "en_GB", "es_AR", "es_ES", "es_MX", "et", "eu", "fa", "fi", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "km", "ko", "lt", "lv", "mk", "mn", "ms", "nl", "no", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sl", "sq", "sr", "sr_CS", "sv_SE", "sw", "th", "tr", "uk", "ur_IN", "ur_PK", "vi", "zh_CN", "zh_TW"]
     default = "fr"
 
     [install.admin]
@@ -74,8 +77,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.core-plugins]
-        url = "https://github.com/osTicket/osTicket-plugins/archive/4b545313f38a2f7f0e5b7e9b9c5e89dd629e51cf.tar.gz"
-        sha256 = "3ef516cea9e0447cb1a86564fcb2dd84676e507906829f181c1c454fbc91fcf4"
+        url = "https://github.com/osTicket/osTicket-plugins/archive/2bb771799a54dbacddfcf87851ca534e3b2af2dc.tar.gz"
+        sha256 = "9e5edc6da09302e149010dd69f0e40251c8780745c9f4058e7a0ce4292e5cf62"
         autoupdate.upstream = "https://github.com/osTicket/osTicket-plugins"
         autoupdate.strategy = "latest_github_commit"
 
@@ -92,8 +95,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.main]
-        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.tar.gz"
-        sha256 = "5041cd079f16b1e98718d4397a878f185d69d72ec197b3875c8da5856f8ca774"
+        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.1.tar.gz"
+        sha256 = "a30a32661355a0ff59ca8a870a5c4de3c03a5ecef6d3e97a65d6222ed8444496"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
@@ -144,7 +147,7 @@ ram.runtime = "50M"
     api.protected = true
 
     [resources.apt]
-    packages = "mariadb-server php8.2-mysql php8.2-gd php-php-gettext php8.2-imap php8.2-fpm php8.2-mbstring php8.2-xml php8.2-zip php8.2-intl php8.2-curl curl"
+    packages = "mariadb-server, php8.2-mysql, php8.2-gd, php-php-gettext, php8.2-imap, php8.2-mbstring, php8.2-xml, php8.2-zip, php8.2-intl, php8.2-curl, curl"
     
     [resources.database]
     type = "mysql"
