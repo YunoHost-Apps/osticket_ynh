@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18.1~ynh1"
+version = "1.18.1~ynh2"
 
 maintainers = ["yalh76"]
 
@@ -59,8 +59,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.plugin-autocloser]
-        url = "https://github.com/clonemeagain/plugin-autocloser/archive/b9db66273728296723a3bb9048bfce8e3d7b2d24.tar.gz"
-        sha256 = "ae255123278b2a04046c3efd49a042f9fa18cd08ee43e28ced34aa44cf4f9c7c"
+        url = "https://github.com/clonemeagain/plugin-autocloser/archive/2b86aee3df3510434bf096ecc9c9fc03c2476320.tar.gz"
+        sha256 = "75ff2f7a3b5cac6dcc27f41efd9cddf2b9f1c91769964c7c9a7a9666f870b818"
         autoupdate.upstream = "https://github.com/clonemeagain/plugin-autocloser"
         autoupdate.strategy = "latest_github_commit"
 
@@ -83,8 +83,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-mentioner]
-        url = "https://github.com/clonemeagain/osticket-plugin-mentioner/archive/48db3aca9f0c79b90315a0b0575e21617aa2c57c.tar.gz"
-        sha256 = "c88a925be63c2b5cf2677f23e442a3c31a6657835f8c3423828e01b7656cac33"
+        url = "https://github.com/clonemeagain/osticket-plugin-mentioner/archive/4a39ba6b34f46b3f9749f0d60753a504e6d8ec2a.tar.gz"
+        sha256 = "4e6f9f82612dc3902fae357115fd54d3ba6f667870ab2fff550c9a386bb276d4"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-plugin-mentioner"
         autoupdate.strategy = "latest_github_commit"
 
