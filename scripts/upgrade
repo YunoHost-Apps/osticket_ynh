@@ -31,19 +31,19 @@ then
 	ynh_secure_remove --file="$install_dir"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/slack" --source_id="plugin-slack"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
+	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/slack" --source_id="plugin-slack" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll" --full_replace=1
 
 	rsync -a "$tmpdir/plugins" "$install_dir/include/."
 	rsync -a "$tmpdir/ost-config.php" "$install_dir/include/."
