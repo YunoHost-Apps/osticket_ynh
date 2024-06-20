@@ -10,45 +10,24 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# CHECK VERSION
-#=================================================
-
-upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression --message="Upgrading source files..." --weight=1
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
-
-	tmpdir="$(mktemp -d)"
-
-	mkdir $tmpdir/plugins
-	rsync -a "$install_dir/include/plugins" "$tmpdir/."
-	rsync -a "$install_dir/include/ost-config.php" "$tmpdir/."
-	ynh_secure_remove --file="$install_dir"
-
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/slack" --source_id="plugin-slack"
-	ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
-
-	rsync -a "$tmpdir/plugins" "$install_dir/include/."
-	rsync -a "$tmpdir/ost-config.php" "$install_dir/include/."
-	ynh_secure_remove --file="$tmpdir"
-fi
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir" --keep="include/plugins include/ost-config.php" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/microsoft-teams" --source_id="plugin-microsoft-teams"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/slack" --source_id="plugin-slack"
+ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscroll" --source_id="plugin-preventautoscroll"
 
 rsync -a "../conf/i18n" "$install_dir/include/."
 
@@ -62,12 +41,12 @@ chown -R $app:www-data "$install_dir"
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
+ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -84,36 +63,33 @@ chown $app:www-data "$install_dir/include/ost-config.php"
 #=================================================
 # BUILD PLUGINS
 #=================================================
+ynh_script_progression --message="Building plugins..." --weight=1
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Building plugins..." --weight=1
-	ynh_exec_as $app mkdir -p "$install_dir/include/plugins/build/.config/composer"
-	COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
-	pushd "$install_dir/include/plugins/build"
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-oauth
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-passthru
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-fs
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-s3
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build archiver
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build attachment_preview
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build autocloser
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fetch-note
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mattermost
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mentioner
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
-		ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $install_dir/include/plugins/.
-	popd
-	ynh_secure_remove --file="$install_dir/include/plugins/build"
-	ynh_secure_remove --file="$install_dir/setup"
-fi
+ynh_exec_as $app mkdir -p "$install_dir/include/plugins/build/.config/composer"
+COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
+pushd "$install_dir/include/plugins/build"
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-oauth
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-passthru
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-fs
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-s3
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build archiver
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build attachment_preview
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build autocloser
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fetch-note
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mattermost
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mentioner
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
+	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
+	ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $install_dir/include/plugins/.
+popd
+ynh_secure_remove --file="$install_dir/include/plugins/build"
+ynh_secure_remove --file="$install_dir/setup"
 
 #=================================================
 # UPGRADE OSTICKET
