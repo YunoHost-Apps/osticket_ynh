@@ -67,6 +67,7 @@ ynh_script_progression --message="Building plugins..." --weight=1
 
 ynh_exec_as $app mkdir -p "$install_dir/include/plugins/build/.config/composer"
 COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
+
 pushd "$install_dir/include/plugins/build"
 	ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
 	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
@@ -88,6 +89,7 @@ pushd "$install_dir/include/plugins/build"
 	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
 	ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $install_dir/include/plugins/.
 popd
+
 ynh_secure_remove --file="$install_dir/include/plugins/build"
 ynh_secure_remove --file="$install_dir/setup"
 
