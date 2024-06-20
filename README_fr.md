@@ -16,7 +16,7 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-osTicket is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
+osTicket est un système de tickets d'assistance open source largement utilisé. Il intègre de manière transparente les demandes créées par courrier électronique, par téléphone et via des formulaires Web dans une interface Web multi-utilisateurs simple et facile à utiliser. Gérez, organisez et archivez toutes vos demandes et réponses d'assistance en un seul endroit tout en offrant à vos clients la responsabilité et la réactivité qu'ils méritent.
 
 **Version incluse :** 1.18.1~ynh2
 
