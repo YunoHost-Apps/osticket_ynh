@@ -1,18 +1,14 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
+
+ynh_app_setting_set --key=php_upload_max_filesize --value=256M
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
@@ -31,87 +27,86 @@ ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscrol
 
 rsync -a "../conf/i18n" "$install_dir/include/."
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring PHP-FPM..." --weight=1
+ynh_script_progression "Configuring PHP-FPM..."
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
+ynh_config_add_phpfpm
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression "Adding $app's configuration..."
 
 cp -f "../conf/ost-sampleconfig.php" "$install_dir/include/ost-config.php"
 
-chmod 666 "$install_dir/include/ost-config.php"
-chown $app:www-data "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 666 "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
 #=================================================
-ynh_script_progression --message="Building plugins..." --weight=1
+ynh_script_progression "Building plugins..."
 
 mkdir -p "$install_dir/include/plugins/build/.config/composer"
-chmod 660 "$install_dir/include/plugins/build/.config/composer"
-chown $app:www-data "$install_dir/include/plugins/build/.config/composer"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 660 "$install_dir/include/plugins/build/.config/composer"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/plugins/build/.config/composer"
 
 export COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
 pushd "$install_dir/include/plugins/build"
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-oauth
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-passthru
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-fs
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-s3
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build archiver
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build attachment_preview
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build autocloser
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fetch-note
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mattermost
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mentioner
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
-	ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
-	ynh_exec_warn_less ynh_exec_as $app cp *.phar $install_dir/include/plugins/.
+	ynh_hide_warnings ynh_exec_as_app php$php_version make.php hydrate
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-cas
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-ldap
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-oauth
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-passthru
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build storage-fs
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build storage-s3
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build archiver
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build attachment_preview
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build autocloser
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fetch-note
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build field-radiobuttons
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fwd-rewriter
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mattermost
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mentioner
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build microsoft-teams
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build slack
+	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build preventautoscroll
+	ynh_hide_warnings ynh_exec_as_app cp *.phar $install_dir/include/plugins/.
 popd
 
-ynh_secure_remove --file="$install_dir/include/plugins/build"
+ynh_safe_rm "$install_dir/include/plugins/build"
 
 #=================================================
 # SETUP APPLICATION WITH CURL
 #=================================================
-ynh_script_progression --message="Setuping application with CURL..." --weight=1
+ynh_script_progression "Setuping application with CURL..."
 
 admin_fname=$(ynh_user_get_info $admin 'firstname')
 admin_lname=$(ynh_user_get_info $admin 'lastname')
 admin_mail=$(ynh_user_get_info $admin 'mail')
 
 # Installation with curl
-ynh_script_progression --message="Finalizing installation..." --weight=1
+ynh_script_progression "Finalizing installation..."
 ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain" "lang_id=$language" "fname=$admin_fname" "lname=$admin_lname" "admin_email=$admin_mail" "username=$admin" "passwd=$password" "passwd2=$password" "prefix=ost_" "dbhost=localhost" "dbname=$db_name" "dbuser=$db_user" "dbpass=$db_pwd"
 
-chmod 400 "$install_dir/include/ost-config.php"
-chown $app:www-data "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
 
-ynh_store_file_checksum --file="$install_dir/include/ost-config.php"
+ynh_store_file_checksum "$install_dir/include/ost-config.php"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"

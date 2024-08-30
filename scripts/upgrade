@@ -1,34 +1,25 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
-#=================================================
-# CHECK VERSION
-#=================================================
-
-upgrade_type=$(ynh_check_app_version_changed)
+ynh_app_setting_set_default --key=php_upload_max_filesize --value=256M
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+	ynh_script_progression "Upgrading source files..."
 
 	tmpdir="$(mktemp -d)"
 
 	mkdir $tmpdir/plugins
 	rsync -a "$install_dir/include/plugins" "$tmpdir/."
 	rsync -a "$install_dir/include/ost-config.php" "$tmpdir/."
-	ynh_secure_remove --file="$install_dir"
+	ynh_safe_rm "$install_dir"
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir"
@@ -47,85 +38,83 @@ then
 
 	rsync -a "$tmpdir/plugins" "$install_dir/include/."
 	rsync -a "$tmpdir/ost-config.php" "$install_dir/include/."
-	ynh_secure_remove --file="$tmpdir"
+	ynh_safe_rm "$tmpdir"
 fi
 
 rsync -a "../conf/i18n" "$install_dir/include/."
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
+ynh_script_progression "Upgrading PHP-FPM configuration..."
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
+ynh_config_add_phpfpm
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
-#=================================================
-# SPECIFIC UPGRADE
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
-ynh_store_file_checksum --file="$install_dir/include/ost-config.php"
+ynh_store_file_checksum "$install_dir/include/ost-config.php"
 
-chmod 400 "$install_dir/include/ost-config.php"
-chown $app:www-data "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/include/ost-config.php"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
-	ynh_script_progression --message="Building plugins..." --weight=1
-	ynh_exec_as $app mkdir -p "$install_dir/include/plugins/build/.config/composer"
+	ynh_script_progression "Building plugins..."
+	ynh_exec_as_app mkdir -p "$install_dir/include/plugins/build/.config/composer"
 	COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
 	pushd "$install_dir/include/plugins/build"
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion make.php hydrate
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-cas
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-ldap
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-oauth
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build auth-passthru
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-fs
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build storage-s3
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build archiver
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build attachment_preview
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build autocloser
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fetch-note
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build field-radiobuttons
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build fwd-rewriter
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mattermost
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build mentioner
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build microsoft-teams
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build slack
-		ynh_exec_warn_less ynh_exec_as $app php$phpversion -dphar.readonly=0 make.php build preventautoscroll
-		ynh_exec_warn_less ynh_exec_as $app cp -f *.phar $install_dir/include/plugins/.
+		ynh_hide_warnings ynh_exec_as_app php$php_version make.php hydrate
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-cas
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-ldap
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-oauth
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build auth-passthru
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build storage-fs
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build storage-s3
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build archiver
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build attachment_preview
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build autocloser
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fetch-note
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build field-radiobuttons
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fwd-rewriter
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mattermost
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mentioner
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build microsoft-teams
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build slack
+		ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build preventautoscroll
+		ynh_hide_warnings ynh_exec_as_app cp -f *.phar $install_dir/include/plugins/.
 	popd
-	ynh_secure_remove --file="$install_dir/include/plugins/build"
-	ynh_secure_remove --file="$install_dir/setup"
+	ynh_safe_rm "$install_dir/include/plugins/build"
+	ynh_safe_rm "$install_dir/setup"
 fi
 
 #=================================================
 # UPGRADE OSTICKET
 #=================================================
-ynh_script_progression --message="Upgrading the application..." --weight=1
+ynh_script_progression "Upgrading the application..."
 
 pushd "$install_dir"
-	php$phpversion manage.php upgrade
+	php$php_version manage.php upgrade
 popd
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"

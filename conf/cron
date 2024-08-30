@@ -1,1 +1,1 @@
-*/5 * * * * osticket /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/api/cron.php
+*/5 * * * * osticket /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/api/cron.php
