@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18.1~ynh2"
+version = "1.18.1~ynh3"
 
 maintainers = ["yalh76"]
 
