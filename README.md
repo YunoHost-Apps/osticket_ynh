@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # osTicket for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Working status](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)
+[![Integration level](https://dash.yunohost.org/integration/osticket.svg)](https://ci-apps.yunohost.org/ci/apps/osticket/) ![Working status](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)
 
 [![Install osTicket with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 osTicket is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
 
-**Shipped version:** 1.18.1~ynh2
+**Shipped version:** 1.18.1~ynh3
 
 **Demo:** <http://www.ostickethacks.com/demo/demo_info.php>
 
