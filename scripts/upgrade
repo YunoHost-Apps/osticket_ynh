@@ -1,7 +1,16 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring downward compatibility..."
 
 ynh_app_setting_set_default --key=php_upload_max_filesize --value=256M
 
@@ -9,7 +18,6 @@ ynh_app_setting_set_default --key=php_upload_max_filesize --value=256M
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
 if ynh_app_upstream_version_changed
 then
 	ynh_script_progression "Upgrading source files..."
@@ -43,37 +51,14 @@ fi
 
 rsync -a "../conf/i18n" "$install_dir/include/."
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
-#=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression "Upgrading PHP-FPM configuration..."
-
-# Create a dedicated PHP-FPM config
-ynh_config_add_phpfpm
-
-# Create a dedicated NGINX config
-ynh_config_add_nginx
-
-ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression "Updating configuration..."
-
-ynh_store_file_checksum "$install_dir/include/ost-config.php"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/include/ost-config.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # BUILD PLUGINS
 #=================================================
 
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
 if ynh_app_upstream_version_changed
 then
 	ynh_script_progression "Building plugins..."
@@ -103,6 +88,27 @@ then
 	ynh_safe_rm "$install_dir/include/plugins/build"
 	ynh_safe_rm "$install_dir/setup"
 fi
+
+#=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression "Updating $app's configuration files..."
+
+ynh_store_file_checksum "$install_dir/include/ost-config.php"
+
+chmod 400 "$install_dir/include/ost-config.php"
+chown $app:www-data "$install_dir/include/ost-config.php"
+
+#=================================================
+# REAPPLY SYSTEM CONFIGURATIONS
+#=================================================
+ynh_script_progression "Upgrading system configurations related to $app..."
+
+ynh_config_add_phpfpm
+
+ynh_config_add_nginx
+
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # UPGRADE OSTICKET

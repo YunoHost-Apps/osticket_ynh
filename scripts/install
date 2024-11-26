@@ -1,8 +1,15 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
+#=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
 ynh_app_setting_set --key=php_upload_max_filesize --value=256M
 
 #=================================================
@@ -10,7 +17,7 @@ ynh_app_setting_set --key=php_upload_max_filesize --value=256M
 #=================================================
 ynh_script_progression "Setting up source files..."
 
-# Download, check integrity, uncompress and patch the source from app.src
+# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build" --source_id="core-plugins"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --source_id="plugin-archiver"
@@ -27,18 +34,19 @@ ynh_setup_source --dest_dir="$install_dir/include/plugins/build/preventautoscrol
 
 rsync -a "../conf/i18n" "$install_dir/include/."
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
-#=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression "Configuring PHP-FPM..."
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
-# Create a dedicated PHP-FPM config
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression "Adding system configurations related to $app..."
+
+# Create a PHP-FPM config (with conf/extra_php-fpm.conf being appended to it)
 ynh_config_add_phpfpm
 
-# Create a dedicated NGINX config
+# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
@@ -50,8 +58,8 @@ ynh_script_progression "Adding $app's configuration..."
 
 cp -f "../conf/ost-sampleconfig.php" "$install_dir/include/ost-config.php"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 666 "$install_dir/include/ost-config.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
+chmod 666 "$install_dir/include/ost-config.php"
+chown $app:www-data "$install_dir/include/ost-config.php"
 
 #=================================================
 # BUILD PLUGINS
@@ -59,8 +67,8 @@ cp -f "../conf/ost-sampleconfig.php" "$install_dir/include/ost-config.php"
 ynh_script_progression "Building plugins..."
 
 mkdir -p "$install_dir/include/plugins/build/.config/composer"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 660 "$install_dir/include/plugins/build/.config/composer"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/plugins/build/.config/composer"
+chmod 660 "$install_dir/include/plugins/build/.config/composer"
+chown $app:www-data "$install_dir/include/plugins/build/.config/composer"
 
 export COMPOSER_HOME="$install_dir/include/plugins/build/.config/composer"
 pushd "$install_dir/include/plugins/build"
@@ -92,16 +100,16 @@ ynh_safe_rm "$install_dir/include/plugins/build"
 #=================================================
 ynh_script_progression "Setuping application with CURL..."
 
-admin_fname=$(ynh_user_get_info $admin 'firstname')
-admin_lname=$(ynh_user_get_info $admin 'lastname')
-admin_mail=$(ynh_user_get_info $admin 'mail')
+admin_fname=$(ynh_user_get_info --username=$admin --key='firstname')
+admin_lname=$(ynh_user_get_info --username=$admin --key='lastname')
+admin_mail=$(ynh_user_get_info --username=$admin --key='mail')
 
 # Installation with curl
 ynh_script_progression "Finalizing installation..."
 ynh_local_curl "/setup/install.php" "s=install" "name=$app" "email=$app@$domain" "lang_id=$language" "fname=$admin_fname" "lname=$admin_lname" "admin_email=$admin_mail" "username=$admin" "passwd=$password" "passwd2=$password" "prefix=ost_" "dbhost=localhost" "dbname=$db_name" "dbuser=$db_user" "dbpass=$db_pwd"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/include/ost-config.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/include/ost-config.php"
+chmod 400 "$install_dir/include/ost-config.php"
+chown $app:www-data "$install_dir/include/ost-config.php"
 
 ynh_store_file_checksum "$install_dir/include/ost-config.php"
 
