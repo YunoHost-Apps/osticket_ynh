@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # osTicket YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/osticket)](https://ci-apps.yunohost.org/ci/apps/osticket/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/osticket)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/osticket)
 
 [![Instalatu osTicket YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
