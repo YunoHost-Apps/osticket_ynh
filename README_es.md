@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # osTicket para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/osticket.svg)](https://dash.yunohost.org/appci/app/osticket) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/osticket.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/osticket.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/osticket)](https://ci-apps.yunohost.org/ci/apps/osticket/)
+![Estado funcional](https://apps.yunohost.org/badge/state/osticket)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/osticket)
 
 [![Instalar osTicket con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=osticket)
 
@@ -36,7 +38,7 @@ osTicket is a widely-used open source support ticket system. It seamlessly integ
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/osticket_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
