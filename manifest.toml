@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18.1~ynh2"
+version = "1.18.2~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -96,8 +96,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.main]
-        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.1.tar.gz"
-        sha256 = "a30a32661355a0ff59ca8a870a5c4de3c03a5ecef6d3e97a65d6222ed8444496"
+        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.2.tar.gz"
+        sha256 = "5eb99b87c68ee2afe819a59228b2424b4712ebf3e211a794ba6a35428ceb94db"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
