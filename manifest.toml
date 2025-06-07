@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Open source support ticket system"
 description.fr = "Système de ticket de support open source"
 
-version = "1.18.2~ynh2"
+version = "1.18.2~ynh3"
 
 maintainers = ["yalh76"]
 
@@ -60,8 +60,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.plugin-autocloser]
-        url = "https://github.com/clonemeagain/plugin-autocloser/archive/2b86aee3df3510434bf096ecc9c9fc03c2476320.tar.gz"
-        sha256 = "75ff2f7a3b5cac6dcc27f41efd9cddf2b9f1c91769964c7c9a7a9666f870b818"
+        url = "https://github.com/clonemeagain/plugin-autocloser/archive/e367b013bb89eb2b27d69c25db920b3e7c0359ec.tar.gz"
+        sha256 = "77b65747d69f47e0650bef33c80668de3ef691e4189cbf325564c9d9df73672d"
         autoupdate.upstream = "https://github.com/clonemeagain/plugin-autocloser"
         autoupdate.strategy = "latest_github_commit"
 
@@ -101,8 +101,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
-        url = "https://github.com/clonemeagain/attachment_preview/archive/de4d6a83fc7947d39b3493ad1ad1ef864a3a80ce.tar.gz"
-        sha256 = "1ad19e824a6ea71ff17e7d0b3665d77d1b223a8a77d1d810b10f76b6879d1864"
+        url = "https://github.com/clonemeagain/attachment_preview/archive/50bbb30c20251f25f43cc1854fcacd45ee6d0c0e.tar.gz"
+        sha256 = "ae67171c5c8c12d5d3ca352e99c1d8114c9b34b0c54bb0aeb249d2a8cda97bf7"
         autoupdate.upstream = "https://github.com/clonemeagain/attachment_preview"
         autoupdate.strategy = "latest_github_commit"
 
