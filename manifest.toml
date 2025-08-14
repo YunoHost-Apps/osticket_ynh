@@ -2,10 +2,10 @@ packaging_format = 2
 
 id = "osticket"
 name = "osTicket"
-description.en = "Open source support ticket system"
-description.fr = "Système de ticket de support open source"
+description.en = "Support ticket system"
+description.fr = "Système de ticket de support"
 
-version = "1.18.2~ynh3"
+version = "1.18.2~ynh4"
 
 maintainers = ["yalh76"]
 
@@ -17,13 +17,12 @@ userdoc = "https://docs.osticket.com"
 code = "https://github.com/osTicket/osTicket"
 
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 
 ldap = false
-
 sso = true
 
 disk = "50M"
@@ -151,15 +150,15 @@ ram.runtime = "50M"
     [resources.apt]
     packages = [
         "mariadb-server",
-        "php8.2-mysql",
-        "php8.2-gd",
+        "php8.4-mysql",
+        "php8.4-gd",
         "php-php-gettext",
-        "php8.2-imap",
-        "php8.2-mbstring",
-        "php8.2-xml",
-        "php8.2-zip",
-        "php8.2-intl",
-        "php8.2-curl",
+        "php8.4-imap",
+        "php8.4-mbstring",
+        "php8.4-xml",
+        "php8.4-zip",
+        "php8.4-intl",
+        "php8.4-curl",
         "curl"
         ]
 
