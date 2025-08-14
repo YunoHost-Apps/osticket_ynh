@@ -150,15 +150,15 @@ ram.runtime = "50M"
     [resources.apt]
     packages = [
         "mariadb-server",
-        "php8.2-mysql",
-        "php8.2-gd",
+        "php8.4-mysql",
+        "php8.4-gd",
         "php-php-gettext",
-        "php8.2-imap",
-        "php8.2-mbstring",
-        "php8.2-xml",
-        "php8.2-zip",
-        "php8.2-intl",
-        "php8.2-curl",
+        "php8.4-imap",
+        "php8.4-mbstring",
+        "php8.4-xml",
+        "php8.4-zip",
+        "php8.4-intl",
+        "php8.4-curl",
         "curl"
         ]
 
