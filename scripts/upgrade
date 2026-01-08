@@ -4,7 +4,6 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -17,7 +16,6 @@ ynh_app_setting_set_default --key=php_upload_max_filesize --value=256M
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
 ynh_script_progression "Upgrading source files..."
 
 tmpdir="$(mktemp -d)"
@@ -80,6 +78,7 @@ pushd "$install_dir/include/plugins/build"
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build preventautoscroll
 	ynh_hide_warnings ynh_exec_as_app cp -f *.phar $install_dir/include/plugins/.
 popd
+
 ynh_safe_rm "$install_dir/include/plugins/build"
 ynh_safe_rm "$install_dir/setup"
 
