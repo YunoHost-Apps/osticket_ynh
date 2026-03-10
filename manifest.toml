@@ -152,7 +152,6 @@ ram.runtime = "50M"
         "mariadb-server",
         "php8.4-mysql",
         "php8.4-gd",
-        "php-php-gettext",
         "php8.4-imap",
         "php8.4-mbstring",
         "php8.4-xml",
