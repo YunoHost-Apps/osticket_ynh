@@ -117,11 +117,11 @@ ram.runtime = "50M"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-slack"
         autoupdate.strategy = "latest_github_commit"
 
-        [resources.sources.plugin-field-radiobuttons]
-        url = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz"
-        sha256 = "cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348"
-        autoupdate.upstream = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons"
-        autoupdate.strategy = "latest_github_commit"
+        #[resources.sources.plugin-field-radiobuttons]
+        #url = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz"
+        #sha256 = "cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348"
+        #autoupdate.upstream = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons"
+        #autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-mattermost]
         url = "https://github.com/pberndro/osticket-mattermost/archive/8ac5224c121e765f22237818da1b8c189a9bd647.tar.gz"
