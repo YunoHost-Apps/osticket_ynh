@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Support ticket system"
 description.fr = "Système de ticket de support"
 
-version = "1.18.3~ynh1"
+version = "1.18.4~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -95,8 +95,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.main]
-        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.3.tar.gz"
-        sha256 = "4bd940b4dda4dec3711892e99954c2e935f4532f7dcccff4c14556ca473b2274"
+        url = "https://github.com/osTicket/osTicket/archive/refs/tags/v1.18.4.tar.gz"
+        sha256 = "1688c2f77b800788368beae3760d9c86db6eea21c88392da004ee81a3961825c"
         autoupdate.strategy = "latest_github_tag"
  
         [resources.sources.plugin-attachment_preview]
@@ -117,11 +117,11 @@ ram.runtime = "50M"
         autoupdate.upstream = "https://github.com/clonemeagain/osticket-slack"
         autoupdate.strategy = "latest_github_commit"
 
-        [resources.sources.plugin-field-radiobuttons]
-        url = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz"
-        sha256 = "cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348"
-        autoupdate.upstream = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons"
-        autoupdate.strategy = "latest_github_commit"
+        #[resources.sources.plugin-field-radiobuttons]
+        #url = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons/archive/5e5173b5b15f25a8f681f6df767ecd7f6d413530.tar.gz"
+        #sha256 = "cfd135076710cf4eaeb4966af73009bc20618ed8cc9d618f1ddf6499b381c348"
+        #autoupdate.upstream = "https://github.com/Micke1101/OSTicket-plugin-field-radiobuttons"
+        #autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-mattermost]
         url = "https://github.com/pberndro/osticket-mattermost/archive/8ac5224c121e765f22237818da1b8c189a9bd647.tar.gz"
@@ -152,7 +152,6 @@ ram.runtime = "50M"
         "mariadb-server",
         "php8.4-mysql",
         "php8.4-gd",
-        "php-php-gettext",
         "php8.4-imap",
         "php8.4-mbstring",
         "php8.4-xml",

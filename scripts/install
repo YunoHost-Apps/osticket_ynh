@@ -23,7 +23,7 @@ ynh_setup_source --dest_dir="$install_dir/include/plugins/build/archiver" --sour
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/attachment_preview" --source_id="plugin-attachment_preview"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/autocloser" --source_id="plugin-autocloser"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fetch-note" --source_id="plugin-fetch-note"
-ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
+#ynh_setup_source --dest_dir="$install_dir/include/plugins/build/field-radiobuttons" --source_id="plugin-field-radiobuttons"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/fwd-rewriter" --source_id="plugin-fwd-rewriter"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mattermost" --source_id="plugin-mattermost"
 ynh_setup_source --dest_dir="$install_dir/include/plugins/build/mentioner" --source_id="plugin-mentioner"
@@ -82,7 +82,7 @@ pushd "$install_dir/include/plugins/build"
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build attachment_preview
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build autocloser
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fetch-note
-	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build field-radiobuttons
+	#ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build field-radiobuttons
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build fwd-rewriter
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mattermost
 	ynh_hide_warnings ynh_exec_as_app php$php_version -dphar.readonly=0 make.php build mentioner
