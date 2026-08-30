@@ -5,7 +5,7 @@ name = "osTicket"
 description.en = "Support ticket system"
 description.fr = "Système de ticket de support"
 
-version = "1.18.4~ynh1"
+version = "1.18.4~ynh2"
 
 maintainers = ["yalh76"]
 
@@ -71,8 +71,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
 
         [resources.sources.plugin-microsoft-teams]
-        url = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/bebf7010e8817cf5495e9d3ab6f30e0e8e270d41.tar.gz"
-        sha256 = "7e9825d26b7758255d73c79f763909f22b1b1d909cb226d901f1231ec98b3fd2"
+        url = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin/archive/7326b8d5b8ac4314e825a88f8dad07e93ac4c59b.tar.gz"
+        sha256 = "013e32824c07118673e1cafe69d53cdb8f451938feffd62c8e43faca3401c114"
         autoupdate.upstream = "https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin"
         autoupdate.strategy = "latest_github_commit"
 
